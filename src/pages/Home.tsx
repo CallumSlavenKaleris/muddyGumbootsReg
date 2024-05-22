@@ -1,5 +1,5 @@
 import React from "react";
-import muddyGumbootLogo from "./assets/muddyGumboot.jpg";
+import muddyGumbootLogo from "../assets/muddyGumboot.jpg";
 
 const Home = () => {
   return (

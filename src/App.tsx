@@ -1,19 +1,19 @@
-import muddyGumbootLogo from './assets/muddyGumboot.jpg'
-import './App.css'
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
-
   return (
     <>
-      <div>
-        <a href="https://www.muddygumbootevents.com/" target="_blank">
-          <img src={muddyGumbootLogo} className="logo" alt="Muddy Gumboots logo" />
-        </a>
-      </div>
-      <h1>Muddy Gumboots</h1>
-      <h2>Max is a cuck</h2>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
