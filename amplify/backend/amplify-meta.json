@@ -1,0 +1,67 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-muddygumbootsreg-dev-d774e-authRole",
+      "UnauthRoleArn": "arn:aws:iam::975050261204:role/amplify-muddygumbootsreg-dev-d774e-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::975050261204:role/amplify-muddygumbootsreg-dev-d774e-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-muddygumbootsreg-dev-d774e-deployment",
+      "UnauthRoleName": "amplify-muddygumbootsreg-dev-d774e-unauthRole",
+      "StackName": "amplify-muddygumbootsreg-dev-d774e",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:975050261204:stack/amplify-muddygumbootsreg-dev-d774e/8e80ae10-17fc-11ef-9d5a-06108a5e8c89",
+      "AmplifyAppId": "d312jbrivlvf89"
+    }
+  },
+  "auth": {
+    "muddyGumbootsReg": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "FAMILY_NAME",
+          "GIVEN_NAME",
+          "EMAIL",
+          "PHONE_NUMBER"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-muddygumbootsreg-dev-d774e-deployment/amplify-cfn-templates/auth/muddyGumbootsReg-cloudformation-template.json",
+        "logicalId": "authmuddyGumbootsReg"
+      },
+      "lastPushTimeStamp": "2024-05-22T05:53:56.135Z",
+      "output": {
+        "CreatedSNSRole": "arn:aws:iam::975050261204:role/sns98eddad9d774e-dev",
+        "UserPoolId": "ap-southeast-2_XmrEukzdz",
+        "AppClientIDWeb": "iqjpma38g01v6qvimfp7ga3rr",
+        "AppClientID": "i6bg9oa8qvp76s8ggf0ph95fs",
+        "IdentityPoolId": "ap-southeast-2:4ac3e800-c028-41d7-9878-486fbad7453e",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-southeast-2:975050261204:userpool/ap-southeast-2_XmrEukzdz",
+        "IdentityPoolName": "testAuthIdentityPool__dev",
+        "UserPoolName": "muddyGumbootsReg"
+      },
+      "lastPushDirHash": "gAUAeso2yDbgVrp6PAxOf8oX7EY="
+    }
+  }
+}
