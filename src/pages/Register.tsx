@@ -14,7 +14,7 @@ const Register = () => {
         </a>
       </div>
       <h1>Muddy Gumboots</h1>
-      <h2>Max is a cuck</h2>
+      <h2>Max is a cool</h2>
     </div>
   );
 };
