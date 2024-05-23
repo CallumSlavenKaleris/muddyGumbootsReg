@@ -1,7 +1,6 @@
-import React from "react";
 import muddyGumbootLogo from "../assets/muddyGumboot.jpg";
 
-const Home = () => {
+const RegistrationSingle = () => {
   return (
     <div>
       <div>
@@ -19,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default RegistrationSingle;
