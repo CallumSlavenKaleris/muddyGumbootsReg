@@ -14,7 +14,7 @@ const Home = () => {
         </a>
       </div>
       <h1>Muddy Gumboots</h1>
-      <h2>Max is a cuck</h2>
+      <h2>Max is a goose</h2>
     </div>
   );
 };
