@@ -210,6 +210,20 @@
         }
       }
     },
+    "apimuddygumbootsreg": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-muddygumbootsreg-dev-d774e-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "Parameters": {
+          "AppSyncApiName": "muddygumbootsreg",
+          "DynamoDBBillingMode": "PAY_PER_REQUEST",
+          "DynamoDBEnableServerSideEncryption": false,
+          "S3DeploymentBucket": "amplify-muddygumbootsreg-dev-d774e-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/5757a24ce75b46781fa10f642486d28b124f803c",
+          "env": "dev"
+        }
+      }
+    },
     "UpdateRolesWithIDPFunction": {
       "DependsOn": [
         "AuthRole",

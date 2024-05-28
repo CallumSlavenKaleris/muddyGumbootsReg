@@ -1,0 +1,91 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+enum Gender {
+  MALE
+  FEMALE
+  MIXED
+}
+
+enum Category {
+  JUNIOR
+  OPEN
+  MASTERSA
+  MASTERSB
+  VETERAN
+  EBIKE
+  TEAMJUNIOR
+  WTEAMJUNIOR
+  TEAMOPEN
+  WTEAMOPEN
+  TEAMMASTERS
+  WTEAMMASTERS
+  MIXEDOPENCOMPETITIVE
+  MIXEDEBIKE
+  MIXEDCOPORATE
+}
+
+enum SubCategory {
+  ENGINEERS
+  CIVIL
+  BANKING
+  PROFSERV
+  OTHER
+  NONDRONE
+}
+
+type Person @model {
+  id: ID!
+  name: String!
+  dateOfBirth: String!
+  Gender: Gender
+  email: String!
+  phoneNumber: String!
+  medicalConditions: String!
+  nextOfKin: Person
+}
+
+interface Registration {
+  id: ID!
+  description: String!
+  category: Category!
+}
+
+type SoloRegistration implements Registration @model {
+  id: ID!
+  user: Person!
+  description: String!
+  category: Category!
+  event: Event!
+}
+
+type GroupRegistration implements Registration  @model {
+  id: ID!
+  users: [Person]! @hasMany
+  description: String!
+  category: Category!
+  event: Event!
+}
+
+type CompanyRegistration implements Registration  @model {
+  id: ID!
+  users: [Person]! @hasMany
+  description: String!
+  workClass: String!
+  category: Category!
+  subCat: SubCategory
+  event: Event!
+}
+
+type Event @model {
+  id: ID!
+  description: String!
+  title: String!
+  date: String!
+  solos: [SoloRegistration] @hasMany
+  companies: [CompanyRegistration] @hasMany
+  groups: [GroupRegistration] @hasMany
+}
+
+
