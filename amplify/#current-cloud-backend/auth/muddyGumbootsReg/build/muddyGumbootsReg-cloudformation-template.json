@@ -1,5 +1,5 @@
 {
-  "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"AmplifyAdmin\",\"createdWith\":\"12.12.0-rc.5f002defb602bb4.0\",\"stackType\":\"auth-Cognito\",\"metadata\":{}}",
+  "Description": "Amplify Cognito Stack for AWS Amplify CLI",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
     "env": {

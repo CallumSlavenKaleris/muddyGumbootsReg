@@ -5,6 +5,7 @@ import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "./aws-exports";
 import { Link } from "react-router-dom";
+import "@aws-sdk/util-endpoints";
 
 Amplify.configure(awsExports);
 
