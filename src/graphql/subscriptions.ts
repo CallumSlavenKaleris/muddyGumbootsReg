@@ -129,7 +129,6 @@ export const onCreateSoloRegistration = /* GraphQL */ `subscription OnCreateSolo
       companyRegistrationUsersId
       __typename
     }
-    description
     category
     event {
       id
@@ -169,7 +168,6 @@ export const onUpdateSoloRegistration = /* GraphQL */ `subscription OnUpdateSolo
       companyRegistrationUsersId
       __typename
     }
-    description
     category
     event {
       id
@@ -209,7 +207,6 @@ export const onDeleteSoloRegistration = /* GraphQL */ `subscription OnDeleteSolo
       companyRegistrationUsersId
       __typename
     }
-    description
     category
     event {
       id
@@ -239,7 +236,6 @@ export const onCreateGroupRegistration = /* GraphQL */ `subscription OnCreateGro
       nextToken
       __typename
     }
-    description
     category
     event {
       id
@@ -269,7 +265,6 @@ export const onUpdateGroupRegistration = /* GraphQL */ `subscription OnUpdateGro
       nextToken
       __typename
     }
-    description
     category
     event {
       id
@@ -299,7 +294,6 @@ export const onDeleteGroupRegistration = /* GraphQL */ `subscription OnDeleteGro
       nextToken
       __typename
     }
-    description
     category
     event {
       id
@@ -329,7 +323,6 @@ export const onCreateCompanyRegistration = /* GraphQL */ `subscription OnCreateC
       nextToken
       __typename
     }
-    description
     workClass
     category
     subCat
@@ -361,7 +354,6 @@ export const onUpdateCompanyRegistration = /* GraphQL */ `subscription OnUpdateC
       nextToken
       __typename
     }
-    description
     workClass
     category
     subCat
@@ -393,7 +385,6 @@ export const onDeleteCompanyRegistration = /* GraphQL */ `subscription OnDeleteC
       nextToken
       __typename
     }
-    description
     workClass
     category
     subCat

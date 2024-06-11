@@ -139,7 +139,6 @@ export const createSoloRegistration = /* GraphQL */ `mutation CreateSoloRegistra
       companyRegistrationUsersId
       __typename
     }
-    description
     category
     event {
       id
@@ -180,7 +179,6 @@ export const updateSoloRegistration = /* GraphQL */ `mutation UpdateSoloRegistra
       companyRegistrationUsersId
       __typename
     }
-    description
     category
     event {
       id
@@ -221,7 +219,6 @@ export const deleteSoloRegistration = /* GraphQL */ `mutation DeleteSoloRegistra
       companyRegistrationUsersId
       __typename
     }
-    description
     category
     event {
       id
@@ -252,7 +249,6 @@ export const createGroupRegistration = /* GraphQL */ `mutation CreateGroupRegist
       nextToken
       __typename
     }
-    description
     category
     event {
       id
@@ -283,7 +279,6 @@ export const updateGroupRegistration = /* GraphQL */ `mutation UpdateGroupRegist
       nextToken
       __typename
     }
-    description
     category
     event {
       id
@@ -314,7 +309,6 @@ export const deleteGroupRegistration = /* GraphQL */ `mutation DeleteGroupRegist
       nextToken
       __typename
     }
-    description
     category
     event {
       id
@@ -345,7 +339,6 @@ export const createCompanyRegistration = /* GraphQL */ `mutation CreateCompanyRe
       nextToken
       __typename
     }
-    description
     workClass
     category
     subCat
@@ -378,7 +371,6 @@ export const updateCompanyRegistration = /* GraphQL */ `mutation UpdateCompanyRe
       nextToken
       __typename
     }
-    description
     workClass
     category
     subCat
@@ -411,7 +403,6 @@ export const deleteCompanyRegistration = /* GraphQL */ `mutation DeleteCompanyRe
       nextToken
       __typename
     }
-    description
     workClass
     category
     subCat

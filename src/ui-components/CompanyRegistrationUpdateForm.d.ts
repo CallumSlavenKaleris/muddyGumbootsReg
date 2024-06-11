@@ -23,13 +23,11 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type CompanyRegistrationUpdateFormInputValues = {
-    description?: string;
     workClass?: string;
     category?: string;
     subCat?: string;
 };
 export declare type CompanyRegistrationUpdateFormValidationValues = {
-    description?: ValidationFunction<string>;
     workClass?: ValidationFunction<string>;
     category?: ValidationFunction<string>;
     subCat?: ValidationFunction<string>;
@@ -37,7 +35,6 @@ export declare type CompanyRegistrationUpdateFormValidationValues = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CompanyRegistrationUpdateFormOverridesProps = {
     CompanyRegistrationUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    description?: PrimitiveOverrideProps<TextFieldProps>;
     workClass?: PrimitiveOverrideProps<TextFieldProps>;
     category?: PrimitiveOverrideProps<SelectFieldProps>;
     subCat?: PrimitiveOverrideProps<SelectFieldProps>;

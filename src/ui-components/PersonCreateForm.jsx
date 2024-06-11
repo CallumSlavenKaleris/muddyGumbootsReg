@@ -60,11 +60,11 @@ export default function PersonCreateForm(props) {
   };
   const validations = {
     name: [{ type: "Required" }],
-    dateOfBirth: [{ type: "Required" }],
+    dateOfBirth: [],
     Gender: [],
-    email: [{ type: "Required" }],
+    email: [],
     phoneNumber: [{ type: "Required" }],
-    medicalConditions: [{ type: "Required" }],
+    medicalConditions: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -182,7 +182,7 @@ export default function PersonCreateForm(props) {
       ></TextField>
       <TextField
         label="Date of birth"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={dateOfBirth}
         onChange={(e) => {
@@ -256,7 +256,7 @@ export default function PersonCreateForm(props) {
       </SelectField>
       <TextField
         label="Email"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={email}
         onChange={(e) => {
@@ -314,7 +314,7 @@ export default function PersonCreateForm(props) {
       ></TextField>
       <TextField
         label="Medical conditions"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={medicalConditions}
         onChange={(e) => {

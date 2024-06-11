@@ -31,14 +31,10 @@ export default function CompanyRegistrationUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    description: "",
     workClass: "",
     category: "",
     subCat: "",
   };
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
   const [workClass, setWorkClass] = React.useState(initialValues.workClass);
   const [category, setCategory] = React.useState(initialValues.category);
   const [subCat, setSubCat] = React.useState(initialValues.subCat);
@@ -47,7 +43,6 @@ export default function CompanyRegistrationUpdateForm(props) {
     const cleanValues = companyRegistrationRecord
       ? { ...initialValues, ...companyRegistrationRecord }
       : initialValues;
-    setDescription(cleanValues.description);
     setWorkClass(cleanValues.workClass);
     setCategory(cleanValues.category);
     setSubCat(cleanValues.subCat);
@@ -71,7 +66,6 @@ export default function CompanyRegistrationUpdateForm(props) {
   }, [idProp, companyRegistrationModelProp]);
   React.useEffect(resetStateValues, [companyRegistrationRecord]);
   const validations = {
-    description: [{ type: "Required" }],
     workClass: [{ type: "Required" }],
     category: [{ type: "Required" }],
     subCat: [],
@@ -102,7 +96,6 @@ export default function CompanyRegistrationUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          description,
           workClass,
           category,
           subCat: subCat ?? null,
@@ -158,33 +151,6 @@ export default function CompanyRegistrationUpdateForm(props) {
       {...rest}
     >
       <TextField
-        label="Description"
-        isRequired={true}
-        isReadOnly={false}
-        value={description}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              description: value,
-              workClass,
-              category,
-              subCat,
-            };
-            const result = onChange(modelFields);
-            value = result?.description ?? value;
-          }
-          if (errors.description?.hasError) {
-            runValidationTasks("description", value);
-          }
-          setDescription(value);
-        }}
-        onBlur={() => runValidationTasks("description", description)}
-        errorMessage={errors.description?.errorMessage}
-        hasError={errors.description?.hasError}
-        {...getOverrideProps(overrides, "description")}
-      ></TextField>
-      <TextField
         label="Work class"
         isRequired={true}
         isReadOnly={false}
@@ -193,7 +159,6 @@ export default function CompanyRegistrationUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               workClass: value,
               category,
               subCat,
@@ -220,7 +185,6 @@ export default function CompanyRegistrationUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               workClass,
               category: value,
               subCat,
@@ -323,7 +287,6 @@ export default function CompanyRegistrationUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               workClass,
               category,
               subCat: value,

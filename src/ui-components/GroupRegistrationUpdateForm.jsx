@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, SelectField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { getGroupRegistration } from "../graphql/queries";
@@ -31,19 +25,14 @@ export default function GroupRegistrationUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    description: "",
     category: "",
   };
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
   const [category, setCategory] = React.useState(initialValues.category);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = groupRegistrationRecord
       ? { ...initialValues, ...groupRegistrationRecord }
       : initialValues;
-    setDescription(cleanValues.description);
     setCategory(cleanValues.category);
     setErrors({});
   };
@@ -66,7 +55,6 @@ export default function GroupRegistrationUpdateForm(props) {
   }, [idProp, groupRegistrationModelProp]);
   React.useEffect(resetStateValues, [groupRegistrationRecord]);
   const validations = {
-    description: [{ type: "Required" }],
     category: [{ type: "Required" }],
   };
   const runValidationTasks = async (
@@ -95,7 +83,6 @@ export default function GroupRegistrationUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          description,
           category,
         };
         const validationResponses = await Promise.all(
@@ -148,31 +135,6 @@ export default function GroupRegistrationUpdateForm(props) {
       {...getOverrideProps(overrides, "GroupRegistrationUpdateForm")}
       {...rest}
     >
-      <TextField
-        label="Description"
-        isRequired={true}
-        isReadOnly={false}
-        value={description}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              description: value,
-              category,
-            };
-            const result = onChange(modelFields);
-            value = result?.description ?? value;
-          }
-          if (errors.description?.hasError) {
-            runValidationTasks("description", value);
-          }
-          setDescription(value);
-        }}
-        onBlur={() => runValidationTasks("description", description)}
-        errorMessage={errors.description?.errorMessage}
-        hasError={errors.description?.hasError}
-        {...getOverrideProps(overrides, "description")}
-      ></TextField>
       <SelectField
         label="Category"
         placeholder="Please select an option"
@@ -182,7 +144,6 @@ export default function GroupRegistrationUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               category: value,
             };
             const result = onChange(modelFields);

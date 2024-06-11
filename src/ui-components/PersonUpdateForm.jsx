@@ -81,11 +81,11 @@ export default function PersonUpdateForm(props) {
   React.useEffect(resetStateValues, [personRecord]);
   const validations = {
     name: [{ type: "Required" }],
-    dateOfBirth: [{ type: "Required" }],
+    dateOfBirth: [],
     Gender: [],
-    email: [{ type: "Required" }],
+    email: [],
     phoneNumber: [{ type: "Required" }],
-    medicalConditions: [{ type: "Required" }],
+    medicalConditions: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -114,11 +114,11 @@ export default function PersonUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           name,
-          dateOfBirth,
+          dateOfBirth: dateOfBirth ?? null,
           Gender: Gender ?? null,
-          email,
+          email: email ?? null,
           phoneNumber,
-          medicalConditions,
+          medicalConditions: medicalConditions ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -201,7 +201,7 @@ export default function PersonUpdateForm(props) {
       ></TextField>
       <TextField
         label="Date of birth"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={dateOfBirth}
         onChange={(e) => {
@@ -275,7 +275,7 @@ export default function PersonUpdateForm(props) {
       </SelectField>
       <TextField
         label="Email"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={email}
         onChange={(e) => {
@@ -333,7 +333,7 @@ export default function PersonUpdateForm(props) {
       ></TextField>
       <TextField
         label="Medical conditions"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={medicalConditions}
         onChange={(e) => {

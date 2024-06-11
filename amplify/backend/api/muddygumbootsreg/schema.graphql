@@ -38,24 +38,22 @@ enum SubCategory {
 type Person @model {
   id: ID!
   name: String!
-  dateOfBirth: String!
+  dateOfBirth: String
   Gender: Gender
-  email: String!
+  email: String
   phoneNumber: String!
-  medicalConditions: String!
+  medicalConditions: String
   nextOfKin: Person
 }
 
 interface Registration {
   id: ID!
-  description: String!
   category: Category!
 }
 
 type SoloRegistration implements Registration @model {
   id: ID!
   user: Person!
-  description: String!
   category: Category!
   event: Event!
 }
@@ -63,7 +61,6 @@ type SoloRegistration implements Registration @model {
 type GroupRegistration implements Registration  @model {
   id: ID!
   users: [Person]! @hasMany
-  description: String!
   category: Category!
   event: Event!
 }
@@ -71,7 +68,6 @@ type GroupRegistration implements Registration  @model {
 type CompanyRegistration implements Registration  @model {
   id: ID!
   users: [Person]! @hasMany
-  description: String!
   workClass: String!
   category: Category!
   subCat: SubCategory

@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: light;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -30,6 +30,30 @@ body {
   min-height: 100vh;
 }
 
+.regFormDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+input {
+  float:left;
+  margin-bottom:15px; 
+  height: auto;
+}
+
+textarea {
+  margin-bottom:15px;
+  resize: vertical; 
+  max-height: 200px;
+}
+
+.comboBox, .datePicker  {
+  background: #213547;
+  float:left;
+  margin-bottom:15px; 
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -42,7 +66,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: rgba(255, 255, 255, 0.87);;
   cursor: pointer;
   transition: border-color 0.25s;
 }

@@ -84,7 +84,6 @@ export const getSoloRegistration = /* GraphQL */ `query GetSoloRegistration($id:
       companyRegistrationUsersId
       __typename
     }
-    description
     category
     event {
       id
@@ -113,7 +112,6 @@ export const listSoloRegistrations = /* GraphQL */ `query ListSoloRegistrations(
   listSoloRegistrations(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      description
       category
       createdAt
       updatedAt
@@ -135,7 +133,6 @@ export const getGroupRegistration = /* GraphQL */ `query GetGroupRegistration($i
       nextToken
       __typename
     }
-    description
     category
     event {
       id
@@ -168,7 +165,6 @@ export const listGroupRegistrations = /* GraphQL */ `query ListGroupRegistration
   ) {
     items {
       id
-      description
       category
       createdAt
       updatedAt
@@ -190,7 +186,6 @@ export const getCompanyRegistration = /* GraphQL */ `query GetCompanyRegistratio
       nextToken
       __typename
     }
-    description
     workClass
     category
     subCat
@@ -225,7 +220,6 @@ export const listCompanyRegistrations = /* GraphQL */ `query ListCompanyRegistra
   ) {
     items {
       id
-      description
       workClass
       category
       subCat
