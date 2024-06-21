@@ -50,7 +50,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-muddygumbootsreg-dev-d774e-deployment/amplify-cfn-templates/auth/muddyGumbootsReg-cloudformation-template.json",
         "logicalId": "authmuddyGumbootsReg"
       },
-      "lastPushTimeStamp": "2024-06-11T05:11:55.605Z",
+      "lastPushTimeStamp": "2024-06-12T04:54:37.126Z",
       "output": {
         "CreatedSNSRole": "arn:aws:iam::975050261204:role/sns98eddad9d774e-dev",
         "UserPoolId": "ap-southeast-2_XmrEukzdz",
@@ -87,8 +87,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-muddygumbootsreg-dev-d774e-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apimuddygumbootsreg"
       },
-      "lastPushTimeStamp": "2024-06-11T05:11:58.816Z",
-      "lastPushDirHash": "MC2AIaAi0f6pV2Jzl9yHnltjTf4="
+      "lastPushTimeStamp": "2024-06-12T05:02:13.252Z",
+      "lastPushDirHash": "FTIZg7TEpRLUmHf8mdN+4CQk5BE="
     }
   }
 }

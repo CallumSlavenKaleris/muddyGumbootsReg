@@ -60,14 +60,14 @@ type SoloRegistration implements Registration @model {
 
 type GroupRegistration implements Registration  @model {
   id: ID!
-  users: [Person]! @hasMany
+  users: [Person]
   category: Category!
   event: Event!
 }
 
 type CompanyRegistration implements Registration  @model {
   id: ID!
-  users: [Person]! @hasMany
+  users: [Person]
   workClass: String!
   category: Category!
   subCat: SubCategory
@@ -79,9 +79,9 @@ type Event @model {
   description: String!
   title: String!
   date: String!
-  solos: [SoloRegistration] @hasMany
-  companies: [CompanyRegistration] @hasMany
-  groups: [GroupRegistration] @hasMany
+  solos: [SoloRegistration]
+  companies: [CompanyRegistration]
+  groups: [GroupRegistration]
 }
 
 

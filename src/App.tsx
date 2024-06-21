@@ -21,6 +21,12 @@ function App() {
               <button>
                 <Link to="/registerSingle">Register Single</Link>
               </button>
+              <button>
+                <Link to="/registerGroup">Register Group</Link>
+              </button>
+              <button>
+                <Link to="/registerCoporate">Register Company Team</Link>
+              </button>
             </header>
           </main>
         )}

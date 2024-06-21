@@ -39,7 +39,8 @@ body {
 input {
   float:left;
   margin-bottom:15px; 
-  height: auto;
+  height: 45px;
+  width: auto;
 }
 
 textarea {

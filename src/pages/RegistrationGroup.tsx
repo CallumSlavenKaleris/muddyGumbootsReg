@@ -8,7 +8,7 @@ import { Category, Gender } from "../API";
 
 const client = generateClient();
 
-const RegistrationSingle = () => {
+const RegistrationGroup = () => {
   interface SignUpFormState {
     firstname: string;
     lastname: string;
@@ -264,4 +264,4 @@ const RegistrationSingle = () => {
   );
 };
 
-export default RegistrationSingle;
+export default RegistrationGroup;
