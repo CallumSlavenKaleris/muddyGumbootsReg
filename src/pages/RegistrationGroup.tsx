@@ -4,61 +4,68 @@ import DatePicker from "react-widgets/DatePicker";
 import "react-widgets/styles.css";
 import { generateClient } from "aws-amplify/api";
 import * as mutations from "../graphql/mutations";
-import { Category, Gender } from "../API";
+import { PersonInput } from "../API";
 
 const client = generateClient();
 
 const RegistrationGroup = () => {
-  interface SignUpFormState {
-    firstname: string;
-    lastname: string;
-    email: string;
-    gender: Gender;
-    dob: string;
-    phoneNumber: string;
-    medicalConditions: string;
-    nextOfKinName: string;
-    nextOfKinPhone: string;
-    nextOfKinRelationship: string;
-    category: Category;
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [dob, setDob] = useState("");
+  const [phoneNumber, setPhone] = useState("");
+  const [medicalConditions, setMedCond] = useState("");
+  const [nextOfKinName, setNOKName] = useState("");
+  const [nextOfKinPhone, setNOKPhone] = useState("");
+  const [category, setCat] = useState("");
+
+  const genders = ["Male", "Female"];
+
+  const categories = ["Junior", "Open", "Masters (35+)", "Masters ()"];
+
+  const groupArray: Array<PersonInput> = [];
+
+  function addPerson() {
+    const person = {
+      name: firstname + " " + lastname,
+      dateOfBirth: dob,
+      gender: gender,
+      email: email,
+      phoneNumber: phoneNumber,
+      medicalConditions: medicalConditions,
+      nextOfKinName: nextOfKinName,
+      nextOfKinPhone: nextOfKinPhone,
+    };
+
+    groupArray.push(person);
+    console.log(groupArray);
   }
 
-  const [formData, setFormData] = useState<SignUpFormState>({
-    firstname: "",
-    lastname: "",
-    email: "",
-    gender: Gender.MALE,
-    dob: "",
-    phoneNumber: "",
-    medicalConditions: "",
-    nextOfKinName: "",
-    nextOfKinPhone: "",
-    nextOfKinRelationship: "",
-    category: null!,
-  });
+  async function createRegisterGroup() {
+    const groupReg = {
+      users: groupArray,
+      category: category,
+    };
 
-  const [nextOfKinData, setnextOfKinData] = useState({
-    name: "",
-    phoneNumber: "",
-  });
+    console.log(groupReg);
 
-  async function createRegisterSingle() {
-    setnextOfKinData({
-      name: formData.nextOfKinName,
-      phoneNumber: formData.nextOfKinPhone,
-    });
-
-    await client
+    client
       .graphql({
-        query: mutations.createPerson,
-        variables: { input: nextOfKinData },
+        query: mutations.createGroupRegistration,
+        variables: { input: groupReg },
       })
-      .then((res) => console.log(res.data.createPerson.name));
+      .then(
+        function (res) {
+          //if success show the response in the log
+          console.log(res.data.createGroupRegistration);
+        },
+        function (error) {
+          //if error show the error message in the log
+          console.log("Error: " + error.statusText);
+        }
+      );
   }
-
-  const genders = ["Male", "Female", "Prefer not to say"];
-
-  const categories = ["Male", "Female", "Prefer not to say"];
 
   return (
     <div>
@@ -67,198 +74,78 @@ const RegistrationGroup = () => {
           required
           className=""
           type="text"
-          value={formData.firstname}
+          value={firstname}
           placeholder="First Name"
-          onChange={(e) =>
-            setFormData({
-              firstname: e.target.value,
-              lastname: formData.lastname,
-              email: formData.email,
-              gender: formData.gender,
-              dob: formData.dob,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setFirstName(e.target.value)}
         />
         <input
           required
           className=""
           type="text"
-          value={formData.lastname}
+          value={lastname}
           placeholder="Last Name"
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: e.target.value,
-              email: formData.email,
-              gender: formData.gender,
-              dob: formData.dob,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setLastName(e.target.value)}
         />
         <input
           required
           className=""
           type="email"
-          value={formData.email}
+          value={email}
           placeholder="Email"
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: formData.lastname,
-              email: e.target.value,
-              gender: formData.gender,
-              dob: formData.dob,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Combobox
           className="comboBox"
           placeholder="Gender"
           data={genders}
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: formData.lastname,
-              email: formData.email,
-              gender: e as Gender,
-              dob: formData.dob,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          dataKey="id"
+          textField="name"
+          onChange={(e) => setGender(e)}
         />
         <DatePicker
           className="comboBox"
           defaultValue={new Date()}
           valueFormat={{ dateStyle: "medium" }}
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: formData.lastname,
-              email: formData.email,
-              gender: formData.gender,
-              dob: e?.toLocaleDateString() as string,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setDob(e?.toDateString() as string)}
         />
         <input
           className="input"
           type="tel"
           pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-          value={formData.phoneNumber}
+          value={phoneNumber}
           placeholder="Phone Number"
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: formData.lastname,
-              email: formData.email,
-              gender: formData.gender,
-              dob: formData.dob,
-              phoneNumber: e.target.value,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setPhone(e.target.value)}
         />
         <input
           className=""
           type="text"
-          value={formData.nextOfKinName}
+          value={nextOfKinName}
           placeholder="Next of Kin Name"
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: formData.lastname,
-              email: formData.email,
-              gender: formData.gender,
-              dob: formData.dob,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: e.target.value,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setNOKName(e.target.value)}
         />
         <input
           className=""
           type="tel"
           pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-          value={formData.nextOfKinPhone}
+          value={nextOfKinPhone}
           placeholder="Next of Kin Phone Number"
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: formData.lastname,
-              email: formData.email,
-              gender: formData.gender,
-              dob: formData.dob,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: formData.medicalConditions,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: e.target.value,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setNOKPhone(e.target.value)}
         />
         <textarea
-          value={formData.medicalConditions}
+          value={medicalConditions}
           placeholder="Medical Conditions"
-          onChange={(e) =>
-            setFormData({
-              firstname: formData.firstname,
-              lastname: formData.lastname,
-              email: formData.email,
-              gender: formData.gender,
-              dob: formData.dob,
-              phoneNumber: formData.phoneNumber,
-              medicalConditions: e.target.value,
-              nextOfKinName: formData.nextOfKinName,
-              nextOfKinPhone: formData.nextOfKinPhone,
-              nextOfKinRelationship: formData.nextOfKinRelationship,
-              category: formData.category,
-            })
-          }
+          onChange={(e) => setMedCond(e.target.value)}
         />
         <Combobox
-          className="comboBox"
           data={categories}
+          dataKey="id"
+          textField="name"
+          className="comboBox"
           placeholder="Category"
+          onChange={(e) => setCat(e)}
         />
-        <button onClick={createRegisterSingle}>Register</button>
+        <button onClick={addPerson}>Add Person</button>
+        <button onClick={createRegisterGroup}>Register Group</button>
       </div>
     </div>
   );

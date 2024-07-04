@@ -8,105 +8,6 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
-export const createPerson = /* GraphQL */ `mutation CreatePerson(
-  $input: CreatePersonInput!
-  $condition: ModelPersonConditionInput
-) {
-  createPerson(input: $input, condition: $condition) {
-    id
-    name
-    dateOfBirth
-    Gender
-    email
-    phoneNumber
-    medicalConditions
-    nextOfKin {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreatePersonMutationVariables,
-  APITypes.CreatePersonMutation
->;
-export const updatePerson = /* GraphQL */ `mutation UpdatePerson(
-  $input: UpdatePersonInput!
-  $condition: ModelPersonConditionInput
-) {
-  updatePerson(input: $input, condition: $condition) {
-    id
-    name
-    dateOfBirth
-    Gender
-    email
-    phoneNumber
-    medicalConditions
-    nextOfKin {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdatePersonMutationVariables,
-  APITypes.UpdatePersonMutation
->;
-export const deletePerson = /* GraphQL */ `mutation DeletePerson(
-  $input: DeletePersonInput!
-  $condition: ModelPersonConditionInput
-) {
-  deletePerson(input: $input, condition: $condition) {
-    id
-    name
-    dateOfBirth
-    Gender
-    email
-    phoneNumber
-    medicalConditions
-    nextOfKin {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeletePersonMutationVariables,
-  APITypes.DeletePersonMutation
->;
 export const createSoloRegistration = /* GraphQL */ `mutation CreateSoloRegistration(
   $input: CreateSoloRegistrationInput!
   $condition: ModelSoloRegistrationConditionInput
@@ -114,27 +15,17 @@ export const createSoloRegistration = /* GraphQL */ `mutation CreateSoloRegistra
   createSoloRegistration(input: $input, condition: $condition) {
     id
     user {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -151,27 +42,17 @@ export const updateSoloRegistration = /* GraphQL */ `mutation UpdateSoloRegistra
   updateSoloRegistration(input: $input, condition: $condition) {
     id
     user {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -188,27 +69,17 @@ export const deleteSoloRegistration = /* GraphQL */ `mutation DeleteSoloRegistra
   deleteSoloRegistration(input: $input, condition: $condition) {
     id
     user {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -225,27 +96,17 @@ export const createGroupRegistration = /* GraphQL */ `mutation CreateGroupRegist
   createGroupRegistration(input: $input, condition: $condition) {
     id
     users {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -262,27 +123,17 @@ export const updateGroupRegistration = /* GraphQL */ `mutation UpdateGroupRegist
   updateGroupRegistration(input: $input, condition: $condition) {
     id
     users {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -299,27 +150,17 @@ export const deleteGroupRegistration = /* GraphQL */ `mutation DeleteGroupRegist
   deleteGroupRegistration(input: $input, condition: $condition) {
     id
     users {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -336,29 +177,19 @@ export const createCompanyRegistration = /* GraphQL */ `mutation CreateCompanyRe
   createCompanyRegistration(input: $input, condition: $condition) {
     id
     users {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     workClass
     category
     subCat
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -375,29 +206,19 @@ export const updateCompanyRegistration = /* GraphQL */ `mutation UpdateCompanyRe
   updateCompanyRegistration(input: $input, condition: $condition) {
     id
     users {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     workClass
     category
     subCat
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -414,29 +235,19 @@ export const deleteCompanyRegistration = /* GraphQL */ `mutation DeleteCompanyRe
   deleteCompanyRegistration(input: $input, condition: $condition) {
     id
     users {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
     workClass
     category
     subCat
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -455,29 +266,6 @@ export const createEvent = /* GraphQL */ `mutation CreateEvent(
     description
     title
     date
-    solos {
-      id
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-    companies {
-      id
-      workClass
-      category
-      subCat
-      createdAt
-      updatedAt
-      __typename
-    }
-    groups {
-      id
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -496,29 +284,6 @@ export const updateEvent = /* GraphQL */ `mutation UpdateEvent(
     description
     title
     date
-    solos {
-      id
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-    companies {
-      id
-      workClass
-      category
-      subCat
-      createdAt
-      updatedAt
-      __typename
-    }
-    groups {
-      id
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -537,29 +302,6 @@ export const deleteEvent = /* GraphQL */ `mutation DeleteEvent(
     description
     title
     date
-    solos {
-      id
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-    companies {
-      id
-      workClass
-      category
-      subCat
-      createdAt
-      updatedAt
-      __typename
-    }
-    groups {
-      id
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
     createdAt
     updatedAt
     __typename

@@ -35,43 +35,35 @@ enum SubCategory {
   NONDRONE
 }
 
-type Person @model {
-  id: ID!
+type Person { 
   name: String!
-  dateOfBirth: String
-  Gender: Gender
-  email: String
+  dateOfBirth: String!
+  gender: String!
+  email: String!
   phoneNumber: String!
-  medicalConditions: String
-  nextOfKin: Person
+  medicalConditions: String!
+  nextOfKinName: String!
+  nextOfKinPhone: String!
 }
 
-interface Registration {
+type SoloRegistration @model {
   id: ID!
-  category: Category!
+  user: Person! 
+  category: String!
 }
 
-type SoloRegistration implements Registration @model {
+type GroupRegistration @model {
   id: ID!
-  user: Person!
-  category: Category!
-  event: Event!
+  users: [Person]!
+  category: String!
 }
 
-type GroupRegistration implements Registration  @model {
+type CompanyRegistration @model {
   id: ID!
-  users: [Person]
-  category: Category!
-  event: Event!
-}
-
-type CompanyRegistration implements Registration  @model {
-  id: ID!
-  users: [Person]
+  users: [Person]!
   workClass: String!
-  category: Category!
-  subCat: SubCategory
-  event: Event!
+  category: String!
+  subCat: String
 }
 
 type Event @model {
@@ -79,9 +71,4 @@ type Event @model {
   description: String!
   title: String!
   date: String!
-  solos: [SoloRegistration]
-  companies: [CompanyRegistration]
-  groups: [GroupRegistration]
 }
-
-

@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, SelectField } from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { getGroupRegistration } from "../graphql/queries";
@@ -135,10 +135,10 @@ export default function GroupRegistrationUpdateForm(props) {
       {...getOverrideProps(overrides, "GroupRegistrationUpdateForm")}
       {...rest}
     >
-      <SelectField
+      <TextField
         label="Category"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={true}
+        isReadOnly={false}
         value={category}
         onChange={(e) => {
           let { value } = e.target;
@@ -158,83 +158,7 @@ export default function GroupRegistrationUpdateForm(props) {
         errorMessage={errors.category?.errorMessage}
         hasError={errors.category?.hasError}
         {...getOverrideProps(overrides, "category")}
-      >
-        <option
-          children="Junior"
-          value="JUNIOR"
-          {...getOverrideProps(overrides, "categoryoption0")}
-        ></option>
-        <option
-          children="Open"
-          value="OPEN"
-          {...getOverrideProps(overrides, "categoryoption1")}
-        ></option>
-        <option
-          children="Mastersa"
-          value="MASTERSA"
-          {...getOverrideProps(overrides, "categoryoption2")}
-        ></option>
-        <option
-          children="Mastersb"
-          value="MASTERSB"
-          {...getOverrideProps(overrides, "categoryoption3")}
-        ></option>
-        <option
-          children="Veteran"
-          value="VETERAN"
-          {...getOverrideProps(overrides, "categoryoption4")}
-        ></option>
-        <option
-          children="Ebike"
-          value="EBIKE"
-          {...getOverrideProps(overrides, "categoryoption5")}
-        ></option>
-        <option
-          children="Teamjunior"
-          value="TEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption6")}
-        ></option>
-        <option
-          children="Wteamjunior"
-          value="WTEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption7")}
-        ></option>
-        <option
-          children="Teamopen"
-          value="TEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption8")}
-        ></option>
-        <option
-          children="Wteamopen"
-          value="WTEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption9")}
-        ></option>
-        <option
-          children="Teammasters"
-          value="TEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption10")}
-        ></option>
-        <option
-          children="Wteammasters"
-          value="WTEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption11")}
-        ></option>
-        <option
-          children="Mixedopencompetitive"
-          value="MIXEDOPENCOMPETITIVE"
-          {...getOverrideProps(overrides, "categoryoption12")}
-        ></option>
-        <option
-          children="Mixedebike"
-          value="MIXEDEBIKE"
-          {...getOverrideProps(overrides, "categoryoption13")}
-        ></option>
-        <option
-          children="Mixedcoporate"
-          value="MIXEDCOPORATE"
-          {...getOverrideProps(overrides, "categoryoption14")}
-        ></option>
-      </SelectField>
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

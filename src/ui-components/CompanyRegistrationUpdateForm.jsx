@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { getCompanyRegistration } from "../graphql/queries";
@@ -176,10 +170,10 @@ export default function CompanyRegistrationUpdateForm(props) {
         hasError={errors.workClass?.hasError}
         {...getOverrideProps(overrides, "workClass")}
       ></TextField>
-      <SelectField
+      <TextField
         label="Category"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={true}
+        isReadOnly={false}
         value={category}
         onChange={(e) => {
           let { value } = e.target;
@@ -201,87 +195,11 @@ export default function CompanyRegistrationUpdateForm(props) {
         errorMessage={errors.category?.errorMessage}
         hasError={errors.category?.hasError}
         {...getOverrideProps(overrides, "category")}
-      >
-        <option
-          children="Junior"
-          value="JUNIOR"
-          {...getOverrideProps(overrides, "categoryoption0")}
-        ></option>
-        <option
-          children="Open"
-          value="OPEN"
-          {...getOverrideProps(overrides, "categoryoption1")}
-        ></option>
-        <option
-          children="Mastersa"
-          value="MASTERSA"
-          {...getOverrideProps(overrides, "categoryoption2")}
-        ></option>
-        <option
-          children="Mastersb"
-          value="MASTERSB"
-          {...getOverrideProps(overrides, "categoryoption3")}
-        ></option>
-        <option
-          children="Veteran"
-          value="VETERAN"
-          {...getOverrideProps(overrides, "categoryoption4")}
-        ></option>
-        <option
-          children="Ebike"
-          value="EBIKE"
-          {...getOverrideProps(overrides, "categoryoption5")}
-        ></option>
-        <option
-          children="Teamjunior"
-          value="TEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption6")}
-        ></option>
-        <option
-          children="Wteamjunior"
-          value="WTEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption7")}
-        ></option>
-        <option
-          children="Teamopen"
-          value="TEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption8")}
-        ></option>
-        <option
-          children="Wteamopen"
-          value="WTEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption9")}
-        ></option>
-        <option
-          children="Teammasters"
-          value="TEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption10")}
-        ></option>
-        <option
-          children="Wteammasters"
-          value="WTEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption11")}
-        ></option>
-        <option
-          children="Mixedopencompetitive"
-          value="MIXEDOPENCOMPETITIVE"
-          {...getOverrideProps(overrides, "categoryoption12")}
-        ></option>
-        <option
-          children="Mixedebike"
-          value="MIXEDEBIKE"
-          {...getOverrideProps(overrides, "categoryoption13")}
-        ></option>
-        <option
-          children="Mixedcoporate"
-          value="MIXEDCOPORATE"
-          {...getOverrideProps(overrides, "categoryoption14")}
-        ></option>
-      </SelectField>
-      <SelectField
+      ></TextField>
+      <TextField
         label="Sub cat"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={false}
+        isReadOnly={false}
         value={subCat}
         onChange={(e) => {
           let { value } = e.target;
@@ -303,38 +221,7 @@ export default function CompanyRegistrationUpdateForm(props) {
         errorMessage={errors.subCat?.errorMessage}
         hasError={errors.subCat?.hasError}
         {...getOverrideProps(overrides, "subCat")}
-      >
-        <option
-          children="Engineers"
-          value="ENGINEERS"
-          {...getOverrideProps(overrides, "subCatoption0")}
-        ></option>
-        <option
-          children="Civil"
-          value="CIVIL"
-          {...getOverrideProps(overrides, "subCatoption1")}
-        ></option>
-        <option
-          children="Banking"
-          value="BANKING"
-          {...getOverrideProps(overrides, "subCatoption2")}
-        ></option>
-        <option
-          children="Profserv"
-          value="PROFSERV"
-          {...getOverrideProps(overrides, "subCatoption3")}
-        ></option>
-        <option
-          children="Other"
-          value="OTHER"
-          {...getOverrideProps(overrides, "subCatoption4")}
-        ></option>
-        <option
-          children="Nondrone"
-          value="NONDRONE"
-          {...getOverrideProps(overrides, "subCatoption5")}
-        ></option>
-      </SelectField>
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { CompanyRegistration } from "../API.ts";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -36,8 +36,8 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type CompanyRegistrationUpdateFormOverridesProps = {
     CompanyRegistrationUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     workClass?: PrimitiveOverrideProps<TextFieldProps>;
-    category?: PrimitiveOverrideProps<SelectFieldProps>;
-    subCat?: PrimitiveOverrideProps<SelectFieldProps>;
+    category?: PrimitiveOverrideProps<TextFieldProps>;
+    subCat?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CompanyRegistrationUpdateFormProps = React.PropsWithChildren<{
     overrides?: CompanyRegistrationUpdateFormOverridesProps | undefined | null;
