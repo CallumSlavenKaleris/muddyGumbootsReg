@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createSoloRegistration } from "../graphql/mutations";
@@ -29,21 +23,15 @@ export default function SoloRegistrationCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    description: "",
     category: "",
   };
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
   const [category, setCategory] = React.useState(initialValues.category);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setDescription(initialValues.description);
     setCategory(initialValues.category);
     setErrors({});
   };
   const validations = {
-    description: [{ type: "Required" }],
     category: [{ type: "Required" }],
   };
   const runValidationTasks = async (
@@ -72,7 +60,6 @@ export default function SoloRegistrationCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          description,
           category,
         };
         const validationResponses = await Promise.all(
@@ -128,40 +115,14 @@ export default function SoloRegistrationCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Description"
+        label="Category"
         isRequired={true}
         isReadOnly={false}
-        value={description}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              description: value,
-              category,
-            };
-            const result = onChange(modelFields);
-            value = result?.description ?? value;
-          }
-          if (errors.description?.hasError) {
-            runValidationTasks("description", value);
-          }
-          setDescription(value);
-        }}
-        onBlur={() => runValidationTasks("description", description)}
-        errorMessage={errors.description?.errorMessage}
-        hasError={errors.description?.hasError}
-        {...getOverrideProps(overrides, "description")}
-      ></TextField>
-      <SelectField
-        label="Category"
-        placeholder="Please select an option"
-        isDisabled={false}
         value={category}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               category: value,
             };
             const result = onChange(modelFields);
@@ -176,83 +137,7 @@ export default function SoloRegistrationCreateForm(props) {
         errorMessage={errors.category?.errorMessage}
         hasError={errors.category?.hasError}
         {...getOverrideProps(overrides, "category")}
-      >
-        <option
-          children="Junior"
-          value="JUNIOR"
-          {...getOverrideProps(overrides, "categoryoption0")}
-        ></option>
-        <option
-          children="Open"
-          value="OPEN"
-          {...getOverrideProps(overrides, "categoryoption1")}
-        ></option>
-        <option
-          children="Mastersa"
-          value="MASTERSA"
-          {...getOverrideProps(overrides, "categoryoption2")}
-        ></option>
-        <option
-          children="Mastersb"
-          value="MASTERSB"
-          {...getOverrideProps(overrides, "categoryoption3")}
-        ></option>
-        <option
-          children="Veteran"
-          value="VETERAN"
-          {...getOverrideProps(overrides, "categoryoption4")}
-        ></option>
-        <option
-          children="Ebike"
-          value="EBIKE"
-          {...getOverrideProps(overrides, "categoryoption5")}
-        ></option>
-        <option
-          children="Teamjunior"
-          value="TEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption6")}
-        ></option>
-        <option
-          children="Wteamjunior"
-          value="WTEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption7")}
-        ></option>
-        <option
-          children="Teamopen"
-          value="TEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption8")}
-        ></option>
-        <option
-          children="Wteamopen"
-          value="WTEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption9")}
-        ></option>
-        <option
-          children="Teammasters"
-          value="TEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption10")}
-        ></option>
-        <option
-          children="Wteammasters"
-          value="WTEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption11")}
-        ></option>
-        <option
-          children="Mixedopencompetitive"
-          value="MIXEDOPENCOMPETITIVE"
-          {...getOverrideProps(overrides, "categoryoption12")}
-        ></option>
-        <option
-          children="Mixedebike"
-          value="MIXEDEBIKE"
-          {...getOverrideProps(overrides, "categoryoption13")}
-        ></option>
-        <option
-          children="Mixedcoporate"
-          value="MIXEDCOPORATE"
-          {...getOverrideProps(overrides, "categoryoption14")}
-        ></option>
-      </SelectField>
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

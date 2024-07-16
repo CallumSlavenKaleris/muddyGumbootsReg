@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createPerson } from "../graphql/mutations";
@@ -31,16 +25,18 @@ export default function PersonCreateForm(props) {
   const initialValues = {
     name: "",
     dateOfBirth: "",
-    Gender: "",
+    gender: "",
     email: "",
     phoneNumber: "",
     medicalConditions: "",
+    nextOfKinName: "",
+    nextOfKinPhone: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [dateOfBirth, setDateOfBirth] = React.useState(
     initialValues.dateOfBirth
   );
-  const [Gender, setGender] = React.useState(initialValues.Gender);
+  const [gender, setGender] = React.useState(initialValues.gender);
   const [email, setEmail] = React.useState(initialValues.email);
   const [phoneNumber, setPhoneNumber] = React.useState(
     initialValues.phoneNumber
@@ -48,23 +44,33 @@ export default function PersonCreateForm(props) {
   const [medicalConditions, setMedicalConditions] = React.useState(
     initialValues.medicalConditions
   );
+  const [nextOfKinName, setNextOfKinName] = React.useState(
+    initialValues.nextOfKinName
+  );
+  const [nextOfKinPhone, setNextOfKinPhone] = React.useState(
+    initialValues.nextOfKinPhone
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setDateOfBirth(initialValues.dateOfBirth);
-    setGender(initialValues.Gender);
+    setGender(initialValues.gender);
     setEmail(initialValues.email);
     setPhoneNumber(initialValues.phoneNumber);
     setMedicalConditions(initialValues.medicalConditions);
+    setNextOfKinName(initialValues.nextOfKinName);
+    setNextOfKinPhone(initialValues.nextOfKinPhone);
     setErrors({});
   };
   const validations = {
     name: [{ type: "Required" }],
     dateOfBirth: [{ type: "Required" }],
-    Gender: [],
+    gender: [{ type: "Required" }],
     email: [{ type: "Required" }],
     phoneNumber: [{ type: "Required" }],
     medicalConditions: [{ type: "Required" }],
+    nextOfKinName: [{ type: "Required" }],
+    nextOfKinPhone: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -94,10 +100,12 @@ export default function PersonCreateForm(props) {
         let modelFields = {
           name,
           dateOfBirth,
-          Gender,
+          gender,
           email,
           phoneNumber,
           medicalConditions,
+          nextOfKinName,
+          nextOfKinPhone,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -162,10 +170,12 @@ export default function PersonCreateForm(props) {
             const modelFields = {
               name: value,
               dateOfBirth,
-              Gender,
+              gender,
               email,
               phoneNumber,
               medicalConditions,
+              nextOfKinName,
+              nextOfKinPhone,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -191,10 +201,12 @@ export default function PersonCreateForm(props) {
             const modelFields = {
               name,
               dateOfBirth: value,
-              Gender,
+              gender,
               email,
               phoneNumber,
               medicalConditions,
+              nextOfKinName,
+              nextOfKinPhone,
             };
             const result = onChange(modelFields);
             value = result?.dateOfBirth ?? value;
@@ -209,51 +221,37 @@ export default function PersonCreateForm(props) {
         hasError={errors.dateOfBirth?.hasError}
         {...getOverrideProps(overrides, "dateOfBirth")}
       ></TextField>
-      <SelectField
+      <TextField
         label="Gender"
-        placeholder="Please select an option"
-        isDisabled={false}
-        value={Gender}
+        isRequired={true}
+        isReadOnly={false}
+        value={gender}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
               name,
               dateOfBirth,
-              Gender: value,
+              gender: value,
               email,
               phoneNumber,
               medicalConditions,
+              nextOfKinName,
+              nextOfKinPhone,
             };
             const result = onChange(modelFields);
-            value = result?.Gender ?? value;
+            value = result?.gender ?? value;
           }
-          if (errors.Gender?.hasError) {
-            runValidationTasks("Gender", value);
+          if (errors.gender?.hasError) {
+            runValidationTasks("gender", value);
           }
           setGender(value);
         }}
-        onBlur={() => runValidationTasks("Gender", Gender)}
-        errorMessage={errors.Gender?.errorMessage}
-        hasError={errors.Gender?.hasError}
-        {...getOverrideProps(overrides, "Gender")}
-      >
-        <option
-          children="Male"
-          value="MALE"
-          {...getOverrideProps(overrides, "Genderoption0")}
-        ></option>
-        <option
-          children="Female"
-          value="FEMALE"
-          {...getOverrideProps(overrides, "Genderoption1")}
-        ></option>
-        <option
-          children="Mixed"
-          value="MIXED"
-          {...getOverrideProps(overrides, "Genderoption2")}
-        ></option>
-      </SelectField>
+        onBlur={() => runValidationTasks("gender", gender)}
+        errorMessage={errors.gender?.errorMessage}
+        hasError={errors.gender?.hasError}
+        {...getOverrideProps(overrides, "gender")}
+      ></TextField>
       <TextField
         label="Email"
         isRequired={true}
@@ -265,10 +263,12 @@ export default function PersonCreateForm(props) {
             const modelFields = {
               name,
               dateOfBirth,
-              Gender,
+              gender,
               email: value,
               phoneNumber,
               medicalConditions,
+              nextOfKinName,
+              nextOfKinPhone,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -294,10 +294,12 @@ export default function PersonCreateForm(props) {
             const modelFields = {
               name,
               dateOfBirth,
-              Gender,
+              gender,
               email,
               phoneNumber: value,
               medicalConditions,
+              nextOfKinName,
+              nextOfKinPhone,
             };
             const result = onChange(modelFields);
             value = result?.phoneNumber ?? value;
@@ -323,10 +325,12 @@ export default function PersonCreateForm(props) {
             const modelFields = {
               name,
               dateOfBirth,
-              Gender,
+              gender,
               email,
               phoneNumber,
               medicalConditions: value,
+              nextOfKinName,
+              nextOfKinPhone,
             };
             const result = onChange(modelFields);
             value = result?.medicalConditions ?? value;
@@ -342,6 +346,68 @@ export default function PersonCreateForm(props) {
         errorMessage={errors.medicalConditions?.errorMessage}
         hasError={errors.medicalConditions?.hasError}
         {...getOverrideProps(overrides, "medicalConditions")}
+      ></TextField>
+      <TextField
+        label="Next of kin name"
+        isRequired={true}
+        isReadOnly={false}
+        value={nextOfKinName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              dateOfBirth,
+              gender,
+              email,
+              phoneNumber,
+              medicalConditions,
+              nextOfKinName: value,
+              nextOfKinPhone,
+            };
+            const result = onChange(modelFields);
+            value = result?.nextOfKinName ?? value;
+          }
+          if (errors.nextOfKinName?.hasError) {
+            runValidationTasks("nextOfKinName", value);
+          }
+          setNextOfKinName(value);
+        }}
+        onBlur={() => runValidationTasks("nextOfKinName", nextOfKinName)}
+        errorMessage={errors.nextOfKinName?.errorMessage}
+        hasError={errors.nextOfKinName?.hasError}
+        {...getOverrideProps(overrides, "nextOfKinName")}
+      ></TextField>
+      <TextField
+        label="Next of kin phone"
+        isRequired={true}
+        isReadOnly={false}
+        value={nextOfKinPhone}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              dateOfBirth,
+              gender,
+              email,
+              phoneNumber,
+              medicalConditions,
+              nextOfKinName,
+              nextOfKinPhone: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.nextOfKinPhone ?? value;
+          }
+          if (errors.nextOfKinPhone?.hasError) {
+            runValidationTasks("nextOfKinPhone", value);
+          }
+          setNextOfKinPhone(value);
+        }}
+        onBlur={() => runValidationTasks("nextOfKinPhone", nextOfKinPhone)}
+        errorMessage={errors.nextOfKinPhone?.errorMessage}
+        hasError={errors.nextOfKinPhone?.hasError}
+        {...getOverrideProps(overrides, "nextOfKinPhone")}
       ></TextField>
       <Flex
         justifyContent="space-between"

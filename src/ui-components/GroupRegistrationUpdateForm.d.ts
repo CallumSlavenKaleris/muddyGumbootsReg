@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { GroupRegistration } from "../API.ts";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -23,18 +23,18 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type GroupRegistrationUpdateFormInputValues = {
-    description?: string;
     category?: string;
+    raceNumber?: string;
 };
 export declare type GroupRegistrationUpdateFormValidationValues = {
-    description?: ValidationFunction<string>;
     category?: ValidationFunction<string>;
+    raceNumber?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type GroupRegistrationUpdateFormOverridesProps = {
     GroupRegistrationUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    description?: PrimitiveOverrideProps<TextFieldProps>;
-    category?: PrimitiveOverrideProps<SelectFieldProps>;
+    category?: PrimitiveOverrideProps<TextFieldProps>;
+    raceNumber?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type GroupRegistrationUpdateFormProps = React.PropsWithChildren<{
     overrides?: GroupRegistrationUpdateFormOverridesProps | undefined | null;

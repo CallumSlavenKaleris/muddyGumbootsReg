@@ -8,141 +8,26 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreatePerson = /* GraphQL */ `subscription OnCreatePerson($filter: ModelSubscriptionPersonFilterInput) {
-  onCreatePerson(filter: $filter) {
-    id
-    name
-    dateOfBirth
-    Gender
-    email
-    phoneNumber
-    medicalConditions
-    nextOfKin {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
-      __typename
-    }
-    createdAt
-    updatedAt
-    groupRegistrationUsersId
-    companyRegistrationUsersId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreatePersonSubscriptionVariables,
-  APITypes.OnCreatePersonSubscription
->;
-export const onUpdatePerson = /* GraphQL */ `subscription OnUpdatePerson($filter: ModelSubscriptionPersonFilterInput) {
-  onUpdatePerson(filter: $filter) {
-    id
-    name
-    dateOfBirth
-    Gender
-    email
-    phoneNumber
-    medicalConditions
-    nextOfKin {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
-      __typename
-    }
-    createdAt
-    updatedAt
-    groupRegistrationUsersId
-    companyRegistrationUsersId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdatePersonSubscriptionVariables,
-  APITypes.OnUpdatePersonSubscription
->;
-export const onDeletePerson = /* GraphQL */ `subscription OnDeletePerson($filter: ModelSubscriptionPersonFilterInput) {
-  onDeletePerson(filter: $filter) {
-    id
-    name
-    dateOfBirth
-    Gender
-    email
-    phoneNumber
-    medicalConditions
-    nextOfKin {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
-      __typename
-    }
-    createdAt
-    updatedAt
-    groupRegistrationUsersId
-    companyRegistrationUsersId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeletePersonSubscriptionVariables,
-  APITypes.OnDeletePersonSubscription
->;
 export const onCreateSoloRegistration = /* GraphQL */ `subscription OnCreateSoloRegistration(
   $filter: ModelSubscriptionSoloRegistrationFilterInput
 ) {
   onCreateSoloRegistration(filter: $filter) {
     id
     user {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventSolosId
     __typename
   }
 }
@@ -156,33 +41,20 @@ export const onUpdateSoloRegistration = /* GraphQL */ `subscription OnUpdateSolo
   onUpdateSoloRegistration(filter: $filter) {
     id
     user {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventSolosId
     __typename
   }
 }
@@ -196,33 +68,20 @@ export const onDeleteSoloRegistration = /* GraphQL */ `subscription OnDeleteSolo
   onDeleteSoloRegistration(filter: $filter) {
     id
     user {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventSolosId
     __typename
   }
 }
@@ -236,23 +95,20 @@ export const onCreateGroupRegistration = /* GraphQL */ `subscription OnCreateGro
   onCreateGroupRegistration(filter: $filter) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventGroupsId
     __typename
   }
 }
@@ -266,23 +122,20 @@ export const onUpdateGroupRegistration = /* GraphQL */ `subscription OnUpdateGro
   onUpdateGroupRegistration(filter: $filter) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventGroupsId
     __typename
   }
 }
@@ -296,23 +149,20 @@ export const onDeleteGroupRegistration = /* GraphQL */ `subscription OnDeleteGro
   onDeleteGroupRegistration(filter: $filter) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventGroupsId
     __typename
   }
 }
@@ -326,25 +176,22 @@ export const onCreateCompanyRegistration = /* GraphQL */ `subscription OnCreateC
   onCreateCompanyRegistration(filter: $filter) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     workClass
     category
     subCat
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventCompaniesId
     __typename
   }
 }
@@ -358,25 +205,22 @@ export const onUpdateCompanyRegistration = /* GraphQL */ `subscription OnUpdateC
   onUpdateCompanyRegistration(filter: $filter) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     workClass
     category
     subCat
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventCompaniesId
     __typename
   }
 }
@@ -390,25 +234,22 @@ export const onDeleteCompanyRegistration = /* GraphQL */ `subscription OnDeleteC
   onDeleteCompanyRegistration(filter: $filter) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     workClass
     category
     subCat
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventCompaniesId
     __typename
   }
 }
@@ -422,18 +263,6 @@ export const onCreateEvent = /* GraphQL */ `subscription OnCreateEvent($filter: 
     description
     title
     date
-    solos {
-      nextToken
-      __typename
-    }
-    companies {
-      nextToken
-      __typename
-    }
-    groups {
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -449,18 +278,6 @@ export const onUpdateEvent = /* GraphQL */ `subscription OnUpdateEvent($filter: 
     description
     title
     date
-    solos {
-      nextToken
-      __typename
-    }
-    companies {
-      nextToken
-      __typename
-    }
-    groups {
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -476,18 +293,6 @@ export const onDeleteEvent = /* GraphQL */ `subscription OnDeleteEvent($filter: 
     description
     title
     date
-    solos {
-      nextToken
-      __typename
-    }
-    companies {
-      nextToken
-      __typename
-    }
-    groups {
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename

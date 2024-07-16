@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -24,28 +24,34 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type PersonCreateFormInputValues = {
     name?: string;
     dateOfBirth?: string;
-    Gender?: string;
+    gender?: string;
     email?: string;
     phoneNumber?: string;
     medicalConditions?: string;
+    nextOfKinName?: string;
+    nextOfKinPhone?: string;
 };
 export declare type PersonCreateFormValidationValues = {
     name?: ValidationFunction<string>;
     dateOfBirth?: ValidationFunction<string>;
-    Gender?: ValidationFunction<string>;
+    gender?: ValidationFunction<string>;
     email?: ValidationFunction<string>;
     phoneNumber?: ValidationFunction<string>;
     medicalConditions?: ValidationFunction<string>;
+    nextOfKinName?: ValidationFunction<string>;
+    nextOfKinPhone?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PersonCreateFormOverridesProps = {
     PersonCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
     dateOfBirth?: PrimitiveOverrideProps<TextFieldProps>;
-    Gender?: PrimitiveOverrideProps<SelectFieldProps>;
+    gender?: PrimitiveOverrideProps<TextFieldProps>;
     email?: PrimitiveOverrideProps<TextFieldProps>;
     phoneNumber?: PrimitiveOverrideProps<TextFieldProps>;
     medicalConditions?: PrimitiveOverrideProps<TextFieldProps>;
+    nextOfKinName?: PrimitiveOverrideProps<TextFieldProps>;
+    nextOfKinPhone?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type PersonCreateFormProps = React.PropsWithChildren<{
     overrides?: PersonCreateFormOverridesProps | undefined | null;

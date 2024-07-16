@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createCompanyRegistration } from "../graphql/mutations";
@@ -29,30 +23,28 @@ export default function CompanyRegistrationCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    description: "",
     workClass: "",
     category: "",
     subCat: "",
+    raceNumber: "",
   };
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
   const [workClass, setWorkClass] = React.useState(initialValues.workClass);
   const [category, setCategory] = React.useState(initialValues.category);
   const [subCat, setSubCat] = React.useState(initialValues.subCat);
+  const [raceNumber, setRaceNumber] = React.useState(initialValues.raceNumber);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setDescription(initialValues.description);
     setWorkClass(initialValues.workClass);
     setCategory(initialValues.category);
     setSubCat(initialValues.subCat);
+    setRaceNumber(initialValues.raceNumber);
     setErrors({});
   };
   const validations = {
-    description: [{ type: "Required" }],
     workClass: [{ type: "Required" }],
     category: [{ type: "Required" }],
     subCat: [],
+    raceNumber: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -80,10 +72,10 @@ export default function CompanyRegistrationCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          description,
           workClass,
           category,
           subCat,
+          raceNumber,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -138,33 +130,6 @@ export default function CompanyRegistrationCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Description"
-        isRequired={true}
-        isReadOnly={false}
-        value={description}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              description: value,
-              workClass,
-              category,
-              subCat,
-            };
-            const result = onChange(modelFields);
-            value = result?.description ?? value;
-          }
-          if (errors.description?.hasError) {
-            runValidationTasks("description", value);
-          }
-          setDescription(value);
-        }}
-        onBlur={() => runValidationTasks("description", description)}
-        errorMessage={errors.description?.errorMessage}
-        hasError={errors.description?.hasError}
-        {...getOverrideProps(overrides, "description")}
-      ></TextField>
-      <TextField
         label="Work class"
         isRequired={true}
         isReadOnly={false}
@@ -173,10 +138,10 @@ export default function CompanyRegistrationCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               workClass: value,
               category,
               subCat,
+              raceNumber,
             };
             const result = onChange(modelFields);
             value = result?.workClass ?? value;
@@ -191,19 +156,19 @@ export default function CompanyRegistrationCreateForm(props) {
         hasError={errors.workClass?.hasError}
         {...getOverrideProps(overrides, "workClass")}
       ></TextField>
-      <SelectField
+      <TextField
         label="Category"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={true}
+        isReadOnly={false}
         value={category}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               workClass,
               category: value,
               subCat,
+              raceNumber,
             };
             const result = onChange(modelFields);
             value = result?.category ?? value;
@@ -217,96 +182,20 @@ export default function CompanyRegistrationCreateForm(props) {
         errorMessage={errors.category?.errorMessage}
         hasError={errors.category?.hasError}
         {...getOverrideProps(overrides, "category")}
-      >
-        <option
-          children="Junior"
-          value="JUNIOR"
-          {...getOverrideProps(overrides, "categoryoption0")}
-        ></option>
-        <option
-          children="Open"
-          value="OPEN"
-          {...getOverrideProps(overrides, "categoryoption1")}
-        ></option>
-        <option
-          children="Mastersa"
-          value="MASTERSA"
-          {...getOverrideProps(overrides, "categoryoption2")}
-        ></option>
-        <option
-          children="Mastersb"
-          value="MASTERSB"
-          {...getOverrideProps(overrides, "categoryoption3")}
-        ></option>
-        <option
-          children="Veteran"
-          value="VETERAN"
-          {...getOverrideProps(overrides, "categoryoption4")}
-        ></option>
-        <option
-          children="Ebike"
-          value="EBIKE"
-          {...getOverrideProps(overrides, "categoryoption5")}
-        ></option>
-        <option
-          children="Teamjunior"
-          value="TEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption6")}
-        ></option>
-        <option
-          children="Wteamjunior"
-          value="WTEAMJUNIOR"
-          {...getOverrideProps(overrides, "categoryoption7")}
-        ></option>
-        <option
-          children="Teamopen"
-          value="TEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption8")}
-        ></option>
-        <option
-          children="Wteamopen"
-          value="WTEAMOPEN"
-          {...getOverrideProps(overrides, "categoryoption9")}
-        ></option>
-        <option
-          children="Teammasters"
-          value="TEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption10")}
-        ></option>
-        <option
-          children="Wteammasters"
-          value="WTEAMMASTERS"
-          {...getOverrideProps(overrides, "categoryoption11")}
-        ></option>
-        <option
-          children="Mixedopencompetitive"
-          value="MIXEDOPENCOMPETITIVE"
-          {...getOverrideProps(overrides, "categoryoption12")}
-        ></option>
-        <option
-          children="Mixedebike"
-          value="MIXEDEBIKE"
-          {...getOverrideProps(overrides, "categoryoption13")}
-        ></option>
-        <option
-          children="Mixedcoporate"
-          value="MIXEDCOPORATE"
-          {...getOverrideProps(overrides, "categoryoption14")}
-        ></option>
-      </SelectField>
-      <SelectField
+      ></TextField>
+      <TextField
         label="Sub cat"
-        placeholder="Please select an option"
-        isDisabled={false}
+        isRequired={false}
+        isReadOnly={false}
         value={subCat}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              description,
               workClass,
               category,
               subCat: value,
+              raceNumber,
             };
             const result = onChange(modelFields);
             value = result?.subCat ?? value;
@@ -320,38 +209,34 @@ export default function CompanyRegistrationCreateForm(props) {
         errorMessage={errors.subCat?.errorMessage}
         hasError={errors.subCat?.hasError}
         {...getOverrideProps(overrides, "subCat")}
-      >
-        <option
-          children="Engineers"
-          value="ENGINEERS"
-          {...getOverrideProps(overrides, "subCatoption0")}
-        ></option>
-        <option
-          children="Civil"
-          value="CIVIL"
-          {...getOverrideProps(overrides, "subCatoption1")}
-        ></option>
-        <option
-          children="Banking"
-          value="BANKING"
-          {...getOverrideProps(overrides, "subCatoption2")}
-        ></option>
-        <option
-          children="Profserv"
-          value="PROFSERV"
-          {...getOverrideProps(overrides, "subCatoption3")}
-        ></option>
-        <option
-          children="Other"
-          value="OTHER"
-          {...getOverrideProps(overrides, "subCatoption4")}
-        ></option>
-        <option
-          children="Nondrone"
-          value="NONDRONE"
-          {...getOverrideProps(overrides, "subCatoption5")}
-        ></option>
-      </SelectField>
+      ></TextField>
+      <TextField
+        label="Race number"
+        isRequired={true}
+        isReadOnly={false}
+        value={raceNumber}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              workClass,
+              category,
+              subCat,
+              raceNumber: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.raceNumber ?? value;
+          }
+          if (errors.raceNumber?.hasError) {
+            runValidationTasks("raceNumber", value);
+          }
+          setRaceNumber(value);
+        }}
+        onBlur={() => runValidationTasks("raceNumber", raceNumber)}
+        errorMessage={errors.raceNumber?.errorMessage}
+        hasError={errors.raceNumber?.hasError}
+        {...getOverrideProps(overrides, "raceNumber")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

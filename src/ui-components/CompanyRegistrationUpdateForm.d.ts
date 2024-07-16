@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { CompanyRegistration } from "../API.ts";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -23,24 +23,24 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type CompanyRegistrationUpdateFormInputValues = {
-    description?: string;
     workClass?: string;
     category?: string;
     subCat?: string;
+    raceNumber?: string;
 };
 export declare type CompanyRegistrationUpdateFormValidationValues = {
-    description?: ValidationFunction<string>;
     workClass?: ValidationFunction<string>;
     category?: ValidationFunction<string>;
     subCat?: ValidationFunction<string>;
+    raceNumber?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CompanyRegistrationUpdateFormOverridesProps = {
     CompanyRegistrationUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    description?: PrimitiveOverrideProps<TextFieldProps>;
     workClass?: PrimitiveOverrideProps<TextFieldProps>;
-    category?: PrimitiveOverrideProps<SelectFieldProps>;
-    subCat?: PrimitiveOverrideProps<SelectFieldProps>;
+    category?: PrimitiveOverrideProps<TextFieldProps>;
+    subCat?: PrimitiveOverrideProps<TextFieldProps>;
+    raceNumber?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CompanyRegistrationUpdateFormProps = React.PropsWithChildren<{
     overrides?: CompanyRegistrationUpdateFormOverridesProps | undefined | null;

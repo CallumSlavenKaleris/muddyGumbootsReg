@@ -8,96 +8,24 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getPerson = /* GraphQL */ `query GetPerson($id: ID!) {
-  getPerson(id: $id) {
-    id
-    name
-    dateOfBirth
-    Gender
-    email
-    phoneNumber
-    medicalConditions
-    nextOfKin {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
-      __typename
-    }
-    createdAt
-    updatedAt
-    groupRegistrationUsersId
-    companyRegistrationUsersId
-    __typename
-  }
-}
-` as GeneratedQuery<APITypes.GetPersonQueryVariables, APITypes.GetPersonQuery>;
-export const listPeople = /* GraphQL */ `query ListPeople(
-  $filter: ModelPersonFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listPeople(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
-      dateOfBirth
-      Gender
-      email
-      phoneNumber
-      medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListPeopleQueryVariables,
-  APITypes.ListPeopleQuery
->;
 export const getSoloRegistration = /* GraphQL */ `query GetSoloRegistration($id: ID!) {
   getSoloRegistration(id: $id) {
     id
     user {
-      id
       name
       dateOfBirth
-      Gender
+      gender
       email
       phoneNumber
       medicalConditions
-      createdAt
-      updatedAt
-      groupRegistrationUsersId
-      companyRegistrationUsersId
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventSolosId
     __typename
   }
 }
@@ -113,11 +41,10 @@ export const listSoloRegistrations = /* GraphQL */ `query ListSoloRegistrations(
   listSoloRegistrations(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      description
       category
+      raceNumber
       createdAt
       updatedAt
-      eventSolosId
       __typename
     }
     nextToken
@@ -132,23 +59,20 @@ export const getGroupRegistration = /* GraphQL */ `query GetGroupRegistration($i
   getGroupRegistration(id: $id) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     category
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventGroupsId
     __typename
   }
 }
@@ -168,11 +92,10 @@ export const listGroupRegistrations = /* GraphQL */ `query ListGroupRegistration
   ) {
     items {
       id
-      description
       category
+      raceNumber
       createdAt
       updatedAt
-      eventGroupsId
       __typename
     }
     nextToken
@@ -187,25 +110,22 @@ export const getCompanyRegistration = /* GraphQL */ `query GetCompanyRegistratio
   getCompanyRegistration(id: $id) {
     id
     users {
-      nextToken
+      name
+      dateOfBirth
+      gender
+      email
+      phoneNumber
+      medicalConditions
+      nextOfKinName
+      nextOfKinPhone
       __typename
     }
-    description
     workClass
     category
     subCat
-    event {
-      id
-      description
-      title
-      date
-      createdAt
-      updatedAt
-      __typename
-    }
+    raceNumber
     createdAt
     updatedAt
-    eventCompaniesId
     __typename
   }
 }
@@ -225,13 +145,12 @@ export const listCompanyRegistrations = /* GraphQL */ `query ListCompanyRegistra
   ) {
     items {
       id
-      description
       workClass
       category
       subCat
+      raceNumber
       createdAt
       updatedAt
-      eventCompaniesId
       __typename
     }
     nextToken
@@ -248,18 +167,6 @@ export const getEvent = /* GraphQL */ `query GetEvent($id: ID!) {
     description
     title
     date
-    solos {
-      nextToken
-      __typename
-    }
-    companies {
-      nextToken
-      __typename
-    }
-    groups {
-      nextToken
-      __typename
-    }
     createdAt
     updatedAt
     __typename

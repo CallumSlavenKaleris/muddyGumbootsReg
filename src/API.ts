@@ -2,39 +2,32 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreatePersonInput = {
+export type CreateSoloRegistrationInput = {
   id?: string | null,
+  user: PersonInput,
+  category: string,
+  raceNumber: string,
+};
+
+export type PersonInput = {
   name: string,
   dateOfBirth: string,
-  Gender?: Gender | null,
+  gender: string,
   email: string,
   phoneNumber: string,
   medicalConditions: string,
-  groupRegistrationUsersId: string,
-  companyRegistrationUsersId: string,
+  nextOfKinName: string,
+  nextOfKinPhone: string,
 };
 
-export enum Gender {
-  MALE = "MALE",
-  FEMALE = "FEMALE",
-  MIXED = "MIXED",
-}
-
-
-export type ModelPersonConditionInput = {
-  name?: ModelStringInput | null,
-  dateOfBirth?: ModelStringInput | null,
-  Gender?: ModelGenderInput | null,
-  email?: ModelStringInput | null,
-  phoneNumber?: ModelStringInput | null,
-  medicalConditions?: ModelStringInput | null,
-  and?: Array< ModelPersonConditionInput | null > | null,
-  or?: Array< ModelPersonConditionInput | null > | null,
-  not?: ModelPersonConditionInput | null,
+export type ModelSoloRegistrationConditionInput = {
+  category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
+  and?: Array< ModelSoloRegistrationConditionInput | null > | null,
+  or?: Array< ModelSoloRegistrationConditionInput | null > | null,
+  not?: ModelSoloRegistrationConditionInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
-  groupRegistrationUsersId?: ModelIDInput | null,
-  companyRegistrationUsersId?: ModelIDInput | null,
 };
 
 export type ModelStringInput = {
@@ -77,198 +70,33 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelGenderInput = {
-  eq?: Gender | null,
-  ne?: Gender | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type Person = {
-  __typename: "Person",
-  id: string,
-  name: string,
-  dateOfBirth: string,
-  Gender?: Gender | null,
-  email: string,
-  phoneNumber: string,
-  medicalConditions: string,
-  nextOfKin?: Person | null,
-  createdAt: string,
-  updatedAt: string,
-  groupRegistrationUsersId: string,
-  companyRegistrationUsersId: string,
-};
-
-export type UpdatePersonInput = {
-  id: string,
-  name?: string | null,
-  dateOfBirth?: string | null,
-  Gender?: Gender | null,
-  email?: string | null,
-  phoneNumber?: string | null,
-  medicalConditions?: string | null,
-  groupRegistrationUsersId?: string | null,
-  companyRegistrationUsersId?: string | null,
-};
-
-export type DeletePersonInput = {
-  id: string,
-};
-
-export type CreateSoloRegistrationInput = {
-  id?: string | null,
-  description: string,
-  category: Category,
-  eventSolosId?: string | null,
-};
-
-export enum Category {
-  JUNIOR = "JUNIOR",
-  OPEN = "OPEN",
-  MASTERSA = "MASTERSA",
-  MASTERSB = "MASTERSB",
-  VETERAN = "VETERAN",
-  EBIKE = "EBIKE",
-  TEAMJUNIOR = "TEAMJUNIOR",
-  WTEAMJUNIOR = "WTEAMJUNIOR",
-  TEAMOPEN = "TEAMOPEN",
-  WTEAMOPEN = "WTEAMOPEN",
-  TEAMMASTERS = "TEAMMASTERS",
-  WTEAMMASTERS = "WTEAMMASTERS",
-  MIXEDOPENCOMPETITIVE = "MIXEDOPENCOMPETITIVE",
-  MIXEDEBIKE = "MIXEDEBIKE",
-  MIXEDCOPORATE = "MIXEDCOPORATE",
-}
-
-
-export type ModelSoloRegistrationConditionInput = {
-  description?: ModelStringInput | null,
-  category?: ModelCategoryInput | null,
-  and?: Array< ModelSoloRegistrationConditionInput | null > | null,
-  or?: Array< ModelSoloRegistrationConditionInput | null > | null,
-  not?: ModelSoloRegistrationConditionInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  eventSolosId?: ModelIDInput | null,
-};
-
-export type ModelCategoryInput = {
-  eq?: Category | null,
-  ne?: Category | null,
-};
-
 export type SoloRegistration = {
   __typename: "SoloRegistration",
   id: string,
   user: Person,
-  description: string,
-  category: Category,
-  event: Event,
-  createdAt: string,
-  updatedAt: string,
-  eventSolosId?: string | null,
-};
-
-export type Registration = {
-  __typename: "Registration",
-  id: string,
-  description: string,
-  category: Category,
-};
-
-export type CompanyRegistration = {
-  __typename: "CompanyRegistration",
-  id: string,
-  users?: ModelPersonConnection | null,
-  description: string,
-  workClass: string,
-  category: Category,
-  subCat?: SubCategory | null,
-  event: Event,
-  createdAt: string,
-  updatedAt: string,
-  eventCompaniesId?: string | null,
-};
-
-export type ModelPersonConnection = {
-  __typename: "ModelPersonConnection",
-  items:  Array<Person | null >,
-  nextToken?: string | null,
-};
-
-export enum SubCategory {
-  ENGINEERS = "ENGINEERS",
-  CIVIL = "CIVIL",
-  BANKING = "BANKING",
-  PROFSERV = "PROFSERV",
-  OTHER = "OTHER",
-  NONDRONE = "NONDRONE",
-}
-
-
-export type Event = {
-  __typename: "Event",
-  id: string,
-  description: string,
-  title: string,
-  date: string,
-  solos?: ModelSoloRegistrationConnection | null,
-  companies?: ModelCompanyRegistrationConnection | null,
-  groups?: ModelGroupRegistrationConnection | null,
+  category: string,
+  raceNumber: string,
   createdAt: string,
   updatedAt: string,
 };
 
-export type ModelSoloRegistrationConnection = {
-  __typename: "ModelSoloRegistrationConnection",
-  items:  Array<SoloRegistration | null >,
-  nextToken?: string | null,
-};
-
-export type ModelCompanyRegistrationConnection = {
-  __typename: "ModelCompanyRegistrationConnection",
-  items:  Array<CompanyRegistration | null >,
-  nextToken?: string | null,
-};
-
-export type ModelGroupRegistrationConnection = {
-  __typename: "ModelGroupRegistrationConnection",
-  items:  Array<GroupRegistration | null >,
-  nextToken?: string | null,
-};
-
-export type GroupRegistration = {
-  __typename: "GroupRegistration",
-  id: string,
-  users?: ModelPersonConnection | null,
-  description: string,
-  category: Category,
-  event: Event,
-  createdAt: string,
-  updatedAt: string,
-  eventGroupsId?: string | null,
+export type Person = {
+  __typename: "Person",
+  name: string,
+  dateOfBirth: string,
+  gender: string,
+  email: string,
+  phoneNumber: string,
+  medicalConditions: string,
+  nextOfKinName: string,
+  nextOfKinPhone: string,
 };
 
 export type UpdateSoloRegistrationInput = {
   id: string,
-  description?: string | null,
-  category?: Category | null,
-  eventSolosId?: string | null,
+  user?: PersonInput | null,
+  category?: string | null,
+  raceNumber?: string | null,
 };
 
 export type DeleteSoloRegistrationInput = {
@@ -277,27 +105,36 @@ export type DeleteSoloRegistrationInput = {
 
 export type CreateGroupRegistrationInput = {
   id?: string | null,
-  description: string,
-  category: Category,
-  eventGroupsId?: string | null,
+  users: Array< PersonInput | null >,
+  category: string,
+  raceNumber: string,
 };
 
 export type ModelGroupRegistrationConditionInput = {
-  description?: ModelStringInput | null,
-  category?: ModelCategoryInput | null,
+  category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   and?: Array< ModelGroupRegistrationConditionInput | null > | null,
   or?: Array< ModelGroupRegistrationConditionInput | null > | null,
   not?: ModelGroupRegistrationConditionInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
-  eventGroupsId?: ModelIDInput | null,
+};
+
+export type GroupRegistration = {
+  __typename: "GroupRegistration",
+  id: string,
+  users:  Array<Person | null >,
+  category: string,
+  raceNumber: string,
+  createdAt: string,
+  updatedAt: string,
 };
 
 export type UpdateGroupRegistrationInput = {
   id: string,
-  description?: string | null,
-  category?: Category | null,
-  eventGroupsId?: string | null,
+  users?: Array< PersonInput | null > | null,
+  category?: string | null,
+  raceNumber?: string | null,
 };
 
 export type DeleteGroupRegistrationInput = {
@@ -306,38 +143,44 @@ export type DeleteGroupRegistrationInput = {
 
 export type CreateCompanyRegistrationInput = {
   id?: string | null,
-  description: string,
+  users: Array< PersonInput | null >,
   workClass: string,
-  category: Category,
-  subCat?: SubCategory | null,
-  eventCompaniesId?: string | null,
+  category: string,
+  subCat?: string | null,
+  raceNumber: string,
 };
 
 export type ModelCompanyRegistrationConditionInput = {
-  description?: ModelStringInput | null,
   workClass?: ModelStringInput | null,
-  category?: ModelCategoryInput | null,
-  subCat?: ModelSubCategoryInput | null,
+  category?: ModelStringInput | null,
+  subCat?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   and?: Array< ModelCompanyRegistrationConditionInput | null > | null,
   or?: Array< ModelCompanyRegistrationConditionInput | null > | null,
   not?: ModelCompanyRegistrationConditionInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
-  eventCompaniesId?: ModelIDInput | null,
 };
 
-export type ModelSubCategoryInput = {
-  eq?: SubCategory | null,
-  ne?: SubCategory | null,
+export type CompanyRegistration = {
+  __typename: "CompanyRegistration",
+  id: string,
+  users:  Array<Person | null >,
+  workClass: string,
+  category: string,
+  subCat?: string | null,
+  raceNumber: string,
+  createdAt: string,
+  updatedAt: string,
 };
 
 export type UpdateCompanyRegistrationInput = {
   id: string,
-  description?: string | null,
+  users?: Array< PersonInput | null > | null,
   workClass?: string | null,
-  category?: Category | null,
-  subCat?: SubCategory | null,
-  eventCompaniesId?: string | null,
+  category?: string | null,
+  subCat?: string | null,
+  raceNumber?: string | null,
 };
 
 export type DeleteCompanyRegistrationInput = {
@@ -362,6 +205,16 @@ export type ModelEventConditionInput = {
   updatedAt?: ModelStringInput | null,
 };
 
+export type Event = {
+  __typename: "Event",
+  id: string,
+  description: string,
+  title: string,
+  date: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
 export type UpdateEventInput = {
   id: string,
   description?: string | null,
@@ -373,59 +226,73 @@ export type DeleteEventInput = {
   id: string,
 };
 
-export type ModelPersonFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  dateOfBirth?: ModelStringInput | null,
-  Gender?: ModelGenderInput | null,
-  email?: ModelStringInput | null,
-  phoneNumber?: ModelStringInput | null,
-  medicalConditions?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  and?: Array< ModelPersonFilterInput | null > | null,
-  or?: Array< ModelPersonFilterInput | null > | null,
-  not?: ModelPersonFilterInput | null,
-  groupRegistrationUsersId?: ModelIDInput | null,
-  companyRegistrationUsersId?: ModelIDInput | null,
-};
-
 export type ModelSoloRegistrationFilterInput = {
   id?: ModelIDInput | null,
-  description?: ModelStringInput | null,
-  category?: ModelCategoryInput | null,
+  category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelSoloRegistrationFilterInput | null > | null,
   or?: Array< ModelSoloRegistrationFilterInput | null > | null,
   not?: ModelSoloRegistrationFilterInput | null,
-  eventSolosId?: ModelIDInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type ModelSoloRegistrationConnection = {
+  __typename: "ModelSoloRegistrationConnection",
+  items:  Array<SoloRegistration | null >,
+  nextToken?: string | null,
 };
 
 export type ModelGroupRegistrationFilterInput = {
   id?: ModelIDInput | null,
-  description?: ModelStringInput | null,
-  category?: ModelCategoryInput | null,
+  category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelGroupRegistrationFilterInput | null > | null,
   or?: Array< ModelGroupRegistrationFilterInput | null > | null,
   not?: ModelGroupRegistrationFilterInput | null,
-  eventGroupsId?: ModelIDInput | null,
+};
+
+export type ModelGroupRegistrationConnection = {
+  __typename: "ModelGroupRegistrationConnection",
+  items:  Array<GroupRegistration | null >,
+  nextToken?: string | null,
 };
 
 export type ModelCompanyRegistrationFilterInput = {
   id?: ModelIDInput | null,
-  description?: ModelStringInput | null,
   workClass?: ModelStringInput | null,
-  category?: ModelCategoryInput | null,
-  subCat?: ModelSubCategoryInput | null,
+  category?: ModelStringInput | null,
+  subCat?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelCompanyRegistrationFilterInput | null > | null,
   or?: Array< ModelCompanyRegistrationFilterInput | null > | null,
   not?: ModelCompanyRegistrationFilterInput | null,
-  eventCompaniesId?: ModelIDInput | null,
+};
+
+export type ModelCompanyRegistrationConnection = {
+  __typename: "ModelCompanyRegistrationConnection",
+  items:  Array<CompanyRegistration | null >,
+  nextToken?: string | null,
 };
 
 export type ModelEventFilterInput = {
@@ -446,18 +313,14 @@ export type ModelEventConnection = {
   nextToken?: string | null,
 };
 
-export type ModelSubscriptionPersonFilterInput = {
+export type ModelSubscriptionSoloRegistrationFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  name?: ModelSubscriptionStringInput | null,
-  dateOfBirth?: ModelSubscriptionStringInput | null,
-  Gender?: ModelSubscriptionStringInput | null,
-  email?: ModelSubscriptionStringInput | null,
-  phoneNumber?: ModelSubscriptionStringInput | null,
-  medicalConditions?: ModelSubscriptionStringInput | null,
+  category?: ModelSubscriptionStringInput | null,
+  raceNumber?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionPersonFilterInput | null > | null,
-  or?: Array< ModelSubscriptionPersonFilterInput | null > | null,
+  and?: Array< ModelSubscriptionSoloRegistrationFilterInput | null > | null,
+  or?: Array< ModelSubscriptionSoloRegistrationFilterInput | null > | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -490,38 +353,26 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
-export type ModelSubscriptionSoloRegistrationFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  description?: ModelSubscriptionStringInput | null,
-  category?: ModelSubscriptionStringInput | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionSoloRegistrationFilterInput | null > | null,
-  or?: Array< ModelSubscriptionSoloRegistrationFilterInput | null > | null,
-};
-
 export type ModelSubscriptionGroupRegistrationFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  description?: ModelSubscriptionStringInput | null,
   category?: ModelSubscriptionStringInput | null,
+  raceNumber?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionGroupRegistrationFilterInput | null > | null,
   or?: Array< ModelSubscriptionGroupRegistrationFilterInput | null > | null,
-  groupRegistrationUsersId?: ModelSubscriptionIDInput | null,
 };
 
 export type ModelSubscriptionCompanyRegistrationFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  description?: ModelSubscriptionStringInput | null,
   workClass?: ModelSubscriptionStringInput | null,
   category?: ModelSubscriptionStringInput | null,
   subCat?: ModelSubscriptionStringInput | null,
+  raceNumber?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionCompanyRegistrationFilterInput | null > | null,
   or?: Array< ModelSubscriptionCompanyRegistrationFilterInput | null > | null,
-  companyRegistrationUsersId?: ModelSubscriptionIDInput | null,
 };
 
 export type ModelSubscriptionEventFilterInput = {
@@ -533,117 +384,6 @@ export type ModelSubscriptionEventFilterInput = {
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionEventFilterInput | null > | null,
   or?: Array< ModelSubscriptionEventFilterInput | null > | null,
-  eventSolosId?: ModelSubscriptionIDInput | null,
-  eventCompaniesId?: ModelSubscriptionIDInput | null,
-  eventGroupsId?: ModelSubscriptionIDInput | null,
-};
-
-export type CreatePersonMutationVariables = {
-  input: CreatePersonInput,
-  condition?: ModelPersonConditionInput | null,
-};
-
-export type CreatePersonMutation = {
-  createPerson?:  {
-    __typename: "Person",
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    Gender?: Gender | null,
-    email: string,
-    phoneNumber: string,
-    medicalConditions: string,
-    nextOfKin?:  {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    groupRegistrationUsersId: string,
-    companyRegistrationUsersId: string,
-  } | null,
-};
-
-export type UpdatePersonMutationVariables = {
-  input: UpdatePersonInput,
-  condition?: ModelPersonConditionInput | null,
-};
-
-export type UpdatePersonMutation = {
-  updatePerson?:  {
-    __typename: "Person",
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    Gender?: Gender | null,
-    email: string,
-    phoneNumber: string,
-    medicalConditions: string,
-    nextOfKin?:  {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    groupRegistrationUsersId: string,
-    companyRegistrationUsersId: string,
-  } | null,
-};
-
-export type DeletePersonMutationVariables = {
-  input: DeletePersonInput,
-  condition?: ModelPersonConditionInput | null,
-};
-
-export type DeletePersonMutation = {
-  deletePerson?:  {
-    __typename: "Person",
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    Gender?: Gender | null,
-    email: string,
-    phoneNumber: string,
-    medicalConditions: string,
-    nextOfKin?:  {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    groupRegistrationUsersId: string,
-    companyRegistrationUsersId: string,
-  } | null,
 };
 
 export type CreateSoloRegistrationMutationVariables = {
@@ -657,32 +397,19 @@ export type CreateSoloRegistrationMutation = {
     id: string,
     user:  {
       __typename: "Person",
-      id: string,
       name: string,
       dateOfBirth: string,
-      Gender?: Gender | null,
+      gender: string,
       email: string,
       phoneNumber: string,
       medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
     },
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventSolosId?: string | null,
   } | null,
 };
 
@@ -697,32 +424,19 @@ export type UpdateSoloRegistrationMutation = {
     id: string,
     user:  {
       __typename: "Person",
-      id: string,
       name: string,
       dateOfBirth: string,
-      Gender?: Gender | null,
+      gender: string,
       email: string,
       phoneNumber: string,
       medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
     },
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventSolosId?: string | null,
   } | null,
 };
 
@@ -737,32 +451,19 @@ export type DeleteSoloRegistrationMutation = {
     id: string,
     user:  {
       __typename: "Person",
-      id: string,
       name: string,
       dateOfBirth: string,
-      Gender?: Gender | null,
+      gender: string,
       email: string,
       phoneNumber: string,
       medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
     },
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventSolosId?: string | null,
   } | null,
 };
 
@@ -775,24 +476,21 @@ export type CreateGroupRegistrationMutation = {
   createGroupRegistration?:  {
     __typename: "GroupRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventGroupsId?: string | null,
   } | null,
 };
 
@@ -805,24 +503,21 @@ export type UpdateGroupRegistrationMutation = {
   updateGroupRegistration?:  {
     __typename: "GroupRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventGroupsId?: string | null,
   } | null,
 };
 
@@ -835,24 +530,21 @@ export type DeleteGroupRegistrationMutation = {
   deleteGroupRegistration?:  {
     __typename: "GroupRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventGroupsId?: string | null,
   } | null,
 };
 
@@ -865,26 +557,23 @@ export type CreateCompanyRegistrationMutation = {
   createCompanyRegistration?:  {
     __typename: "CompanyRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
     workClass: string,
-    category: Category,
-    subCat?: SubCategory | null,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventCompaniesId?: string | null,
   } | null,
 };
 
@@ -897,26 +586,23 @@ export type UpdateCompanyRegistrationMutation = {
   updateCompanyRegistration?:  {
     __typename: "CompanyRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
     workClass: string,
-    category: Category,
-    subCat?: SubCategory | null,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventCompaniesId?: string | null,
   } | null,
 };
 
@@ -929,26 +615,23 @@ export type DeleteCompanyRegistrationMutation = {
   deleteCompanyRegistration?:  {
     __typename: "CompanyRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
     workClass: string,
-    category: Category,
-    subCat?: SubCategory | null,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventCompaniesId?: string | null,
   } | null,
 };
 
@@ -964,18 +647,6 @@ export type CreateEventMutation = {
     description: string,
     title: string,
     date: string,
-    solos?:  {
-      __typename: "ModelSoloRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    companies?:  {
-      __typename: "ModelCompanyRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    groups?:  {
-      __typename: "ModelGroupRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -993,18 +664,6 @@ export type UpdateEventMutation = {
     description: string,
     title: string,
     date: string,
-    solos?:  {
-      __typename: "ModelSoloRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    companies?:  {
-      __typename: "ModelCompanyRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    groups?:  {
-      __typename: "ModelGroupRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1022,82 +681,8 @@ export type DeleteEventMutation = {
     description: string,
     title: string,
     date: string,
-    solos?:  {
-      __typename: "ModelSoloRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    companies?:  {
-      __typename: "ModelCompanyRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    groups?:  {
-      __typename: "ModelGroupRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
-  } | null,
-};
-
-export type GetPersonQueryVariables = {
-  id: string,
-};
-
-export type GetPersonQuery = {
-  getPerson?:  {
-    __typename: "Person",
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    Gender?: Gender | null,
-    email: string,
-    phoneNumber: string,
-    medicalConditions: string,
-    nextOfKin?:  {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    groupRegistrationUsersId: string,
-    companyRegistrationUsersId: string,
-  } | null,
-};
-
-export type ListPeopleQueryVariables = {
-  filter?: ModelPersonFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListPeopleQuery = {
-  listPeople?:  {
-    __typename: "ModelPersonConnection",
-    items:  Array< {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null >,
-    nextToken?: string | null,
   } | null,
 };
 
@@ -1111,32 +696,19 @@ export type GetSoloRegistrationQuery = {
     id: string,
     user:  {
       __typename: "Person",
-      id: string,
       name: string,
       dateOfBirth: string,
-      Gender?: Gender | null,
+      gender: string,
       email: string,
       phoneNumber: string,
       medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
     },
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventSolosId?: string | null,
   } | null,
 };
 
@@ -1152,11 +724,10 @@ export type ListSoloRegistrationsQuery = {
     items:  Array< {
       __typename: "SoloRegistration",
       id: string,
-      description: string,
-      category: Category,
+      category: string,
+      raceNumber: string,
       createdAt: string,
       updatedAt: string,
-      eventSolosId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1170,24 +741,21 @@ export type GetGroupRegistrationQuery = {
   getGroupRegistration?:  {
     __typename: "GroupRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventGroupsId?: string | null,
   } | null,
 };
 
@@ -1203,11 +771,10 @@ export type ListGroupRegistrationsQuery = {
     items:  Array< {
       __typename: "GroupRegistration",
       id: string,
-      description: string,
-      category: Category,
+      category: string,
+      raceNumber: string,
       createdAt: string,
       updatedAt: string,
-      eventGroupsId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1221,26 +788,23 @@ export type GetCompanyRegistrationQuery = {
   getCompanyRegistration?:  {
     __typename: "CompanyRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
     workClass: string,
-    category: Category,
-    subCat?: SubCategory | null,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventCompaniesId?: string | null,
   } | null,
 };
 
@@ -1256,13 +820,12 @@ export type ListCompanyRegistrationsQuery = {
     items:  Array< {
       __typename: "CompanyRegistration",
       id: string,
-      description: string,
       workClass: string,
-      category: Category,
-      subCat?: SubCategory | null,
+      category: string,
+      subCat?: string | null,
+      raceNumber: string,
       createdAt: string,
       updatedAt: string,
-      eventCompaniesId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1279,18 +842,6 @@ export type GetEventQuery = {
     description: string,
     title: string,
     date: string,
-    solos?:  {
-      __typename: "ModelSoloRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    companies?:  {
-      __typename: "ModelCompanyRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    groups?:  {
-      __typename: "ModelGroupRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1318,111 +869,6 @@ export type ListEventsQuery = {
   } | null,
 };
 
-export type OnCreatePersonSubscriptionVariables = {
-  filter?: ModelSubscriptionPersonFilterInput | null,
-};
-
-export type OnCreatePersonSubscription = {
-  onCreatePerson?:  {
-    __typename: "Person",
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    Gender?: Gender | null,
-    email: string,
-    phoneNumber: string,
-    medicalConditions: string,
-    nextOfKin?:  {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    groupRegistrationUsersId: string,
-    companyRegistrationUsersId: string,
-  } | null,
-};
-
-export type OnUpdatePersonSubscriptionVariables = {
-  filter?: ModelSubscriptionPersonFilterInput | null,
-};
-
-export type OnUpdatePersonSubscription = {
-  onUpdatePerson?:  {
-    __typename: "Person",
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    Gender?: Gender | null,
-    email: string,
-    phoneNumber: string,
-    medicalConditions: string,
-    nextOfKin?:  {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    groupRegistrationUsersId: string,
-    companyRegistrationUsersId: string,
-  } | null,
-};
-
-export type OnDeletePersonSubscriptionVariables = {
-  filter?: ModelSubscriptionPersonFilterInput | null,
-};
-
-export type OnDeletePersonSubscription = {
-  onDeletePerson?:  {
-    __typename: "Person",
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    Gender?: Gender | null,
-    email: string,
-    phoneNumber: string,
-    medicalConditions: string,
-    nextOfKin?:  {
-      __typename: "Person",
-      id: string,
-      name: string,
-      dateOfBirth: string,
-      Gender?: Gender | null,
-      email: string,
-      phoneNumber: string,
-      medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    groupRegistrationUsersId: string,
-    companyRegistrationUsersId: string,
-  } | null,
-};
-
 export type OnCreateSoloRegistrationSubscriptionVariables = {
   filter?: ModelSubscriptionSoloRegistrationFilterInput | null,
 };
@@ -1433,32 +879,19 @@ export type OnCreateSoloRegistrationSubscription = {
     id: string,
     user:  {
       __typename: "Person",
-      id: string,
       name: string,
       dateOfBirth: string,
-      Gender?: Gender | null,
+      gender: string,
       email: string,
       phoneNumber: string,
       medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
     },
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventSolosId?: string | null,
   } | null,
 };
 
@@ -1472,32 +905,19 @@ export type OnUpdateSoloRegistrationSubscription = {
     id: string,
     user:  {
       __typename: "Person",
-      id: string,
       name: string,
       dateOfBirth: string,
-      Gender?: Gender | null,
+      gender: string,
       email: string,
       phoneNumber: string,
       medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
     },
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventSolosId?: string | null,
   } | null,
 };
 
@@ -1511,32 +931,19 @@ export type OnDeleteSoloRegistrationSubscription = {
     id: string,
     user:  {
       __typename: "Person",
-      id: string,
       name: string,
       dateOfBirth: string,
-      Gender?: Gender | null,
+      gender: string,
       email: string,
       phoneNumber: string,
       medicalConditions: string,
-      createdAt: string,
-      updatedAt: string,
-      groupRegistrationUsersId: string,
-      companyRegistrationUsersId: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
     },
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventSolosId?: string | null,
   } | null,
 };
 
@@ -1548,24 +955,21 @@ export type OnCreateGroupRegistrationSubscription = {
   onCreateGroupRegistration?:  {
     __typename: "GroupRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventGroupsId?: string | null,
   } | null,
 };
 
@@ -1577,24 +981,21 @@ export type OnUpdateGroupRegistrationSubscription = {
   onUpdateGroupRegistration?:  {
     __typename: "GroupRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventGroupsId?: string | null,
   } | null,
 };
 
@@ -1606,24 +1007,21 @@ export type OnDeleteGroupRegistrationSubscription = {
   onDeleteGroupRegistration?:  {
     __typename: "GroupRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
-    category: Category,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
+    category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventGroupsId?: string | null,
   } | null,
 };
 
@@ -1635,26 +1033,23 @@ export type OnCreateCompanyRegistrationSubscription = {
   onCreateCompanyRegistration?:  {
     __typename: "CompanyRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
     workClass: string,
-    category: Category,
-    subCat?: SubCategory | null,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventCompaniesId?: string | null,
   } | null,
 };
 
@@ -1666,26 +1061,23 @@ export type OnUpdateCompanyRegistrationSubscription = {
   onUpdateCompanyRegistration?:  {
     __typename: "CompanyRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
     workClass: string,
-    category: Category,
-    subCat?: SubCategory | null,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventCompaniesId?: string | null,
   } | null,
 };
 
@@ -1697,26 +1089,23 @@ export type OnDeleteCompanyRegistrationSubscription = {
   onDeleteCompanyRegistration?:  {
     __typename: "CompanyRegistration",
     id: string,
-    users?:  {
-      __typename: "ModelPersonConnection",
-      nextToken?: string | null,
-    } | null,
-    description: string,
+    users:  Array< {
+      __typename: "Person",
+      name: string,
+      dateOfBirth: string,
+      gender: string,
+      email: string,
+      phoneNumber: string,
+      medicalConditions: string,
+      nextOfKinName: string,
+      nextOfKinPhone: string,
+    } | null >,
     workClass: string,
-    category: Category,
-    subCat?: SubCategory | null,
-    event:  {
-      __typename: "Event",
-      id: string,
-      description: string,
-      title: string,
-      date: string,
-      createdAt: string,
-      updatedAt: string,
-    },
+    category: string,
+    subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
-    eventCompaniesId?: string | null,
   } | null,
 };
 
@@ -1731,18 +1120,6 @@ export type OnCreateEventSubscription = {
     description: string,
     title: string,
     date: string,
-    solos?:  {
-      __typename: "ModelSoloRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    companies?:  {
-      __typename: "ModelCompanyRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    groups?:  {
-      __typename: "ModelGroupRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1759,18 +1136,6 @@ export type OnUpdateEventSubscription = {
     description: string,
     title: string,
     date: string,
-    solos?:  {
-      __typename: "ModelSoloRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    companies?:  {
-      __typename: "ModelCompanyRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    groups?:  {
-      __typename: "ModelGroupRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1787,18 +1152,6 @@ export type OnDeleteEventSubscription = {
     description: string,
     title: string,
     date: string,
-    solos?:  {
-      __typename: "ModelSoloRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    companies?:  {
-      __typename: "ModelCompanyRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
-    groups?:  {
-      __typename: "ModelGroupRegistrationConnection",
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,

@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { SoloRegistration } from "../API.ts";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -23,18 +23,15 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type SoloRegistrationUpdateFormInputValues = {
-    description?: string;
     category?: string;
 };
 export declare type SoloRegistrationUpdateFormValidationValues = {
-    description?: ValidationFunction<string>;
     category?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SoloRegistrationUpdateFormOverridesProps = {
     SoloRegistrationUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    description?: PrimitiveOverrideProps<TextFieldProps>;
-    category?: PrimitiveOverrideProps<SelectFieldProps>;
+    category?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type SoloRegistrationUpdateFormProps = React.PropsWithChildren<{
     overrides?: SoloRegistrationUpdateFormOverridesProps | undefined | null;
