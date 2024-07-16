@@ -19,7 +19,6 @@ const RegistrationGroup = () => {
   const [nextOfKinName, setNOKName] = useState("");
   const [nextOfKinPhone, setNOKPhone] = useState("");
   const [category, setCat] = useState("");
-  const [raceNumber, setRaceNum] = useState("");
   const [validAge, setValidAge] = useState(false);
 
   function validateCatgeroy() {
@@ -40,7 +39,7 @@ const RegistrationGroup = () => {
       setValidAge(false);
     } else if (category === "Masters 2 (51-65)" && !(age < 51 && age > 65)) {
       setValidAge(false);
-    } else if (category === "Masters 3 (65+)" && !age > 65) {
+    } else if (category === "Masters 3 (65+)" && !(age > 65)) {
       setValidAge(false);
     } else {
       setValidAge(true);
@@ -120,7 +119,7 @@ const RegistrationGroup = () => {
     const groupReg = {
       users: groupArray,
       category: category,
-      raceNumber: raceNumber,
+      raceNumber: "1",
     };
 
     await client

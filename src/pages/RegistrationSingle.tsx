@@ -18,7 +18,6 @@ const RegistrationSingle = () => {
   const [nextOfKinName, setNOKName] = useState("");
   const [nextOfKinPhone, setNOKPhone] = useState("");
   const [category, setCat] = useState("");
-  const [raceNumber, setRaceNum] = useState("");
 
   function validateCatgeroy() {
     const birthday = new Date(dob);
@@ -77,15 +76,12 @@ const RegistrationSingle = () => {
       nextOfKinPhone: nextOfKinPhone,
     };
 
-    setRaceNum("1");
-
     const singleReg = {
       user: person,
       category: category,
-      raceNumber: raceNumber,
+      raceNumber: "0",
     };
 
-    /*
     await client
       .graphql({
         query: mutations.createSoloRegistration,
@@ -98,10 +94,12 @@ const RegistrationSingle = () => {
           console.log(res.data.createSoloRegistration);
         },
         function (error) {
-          alert("There was an error processing your registration, please try again and iof this issue persists please contact muddy gumboots staff");
+          alert(
+            "There was an error processing your registration, please try again and iof this issue persists please contact muddy gumboots staff"
+          );
+          console.log(error);
         }
       );
-      */
   }
 
   return (
