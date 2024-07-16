@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Combobox from "react-widgets/Combobox";
 import DatePicker from "react-widgets/DatePicker";
-import "react-widgets/styles.css";
 import { generateClient } from "aws-amplify/api";
 import * as mutations from "../graphql/mutations";
 import { PersonInput } from "../API";
@@ -22,10 +21,14 @@ const RegistrationCompany = () => {
   const [nextOfKinName, setNOKName] = useState("");
   const [nextOfKinPhone, setNOKPhone] = useState("");
   const [category, setCat] = useState("");
+  const [workClass, setworkClass] = useState("");
+  const [raceNumber, setRaceNum] = useState("");
 
   const genders = ["Male", "Female"];
 
   const categories = ["Junior", "Open", "Masters (35+)", "Masters ()"];
+
+  const workClasses = ["Junior", "Open", "Masters (35+)", "Masters ()"];
 
   const [groupArray, setGroupArray] = useState<Array<PersonInput>>([]);
 
@@ -58,11 +61,15 @@ const RegistrationCompany = () => {
     }
 
     if (
-      !(document.getElementById("email") as HTMLInputElement).checkValidity()
+      !(document.getElementById("phoneNum") as HTMLInputElement).checkValidity()
     ) {
-      (document.getElementById("email") as HTMLInputElement).reportValidity();
+      (
+        document.getElementById("phoneNum") as HTMLInputElement
+      ).reportValidity();
       return;
     }
+
+    setRaceNum("1");
 
     const person = {
       name: firstname + " " + lastname,
@@ -79,23 +86,33 @@ const RegistrationCompany = () => {
     console.log(groupArray);
   }
 
+  function removePerson(index: number) {
+    const array = [...groupArray];
+    if (index !== -1) {
+      array.splice(index, 1);
+      setGroupArray(array);
+    }
+  }
+
   async function handleSubmit() {
     const groupReg = {
       users: groupArray,
       category: category,
+      workClass: workClass,
+      raceNumber: raceNumber,
     };
 
     console.log(groupReg);
 
     await client
       .graphql({
-        query: mutations.createGroupRegistration,
+        query: mutations.createCompanyRegistration,
         variables: { input: groupReg },
       })
       .then(
         function (res) {
           //if success show the response in the log
-          console.log(res.data.createGroupRegistration);
+          console.log(res.data.createCompanyRegistration);
         },
         function (error) {
           //if error show the error message in the log
@@ -190,11 +207,22 @@ const RegistrationCompany = () => {
           placeholder="Category"
           onChange={(e) => setCat(e)}
         />
+        <Combobox
+          data={workClasses}
+          dataKey="id"
+          textField="name"
+          className="comboBox"
+          placeholder="Work Class"
+          onChange={(e) => setworkClass(e)}
+        />
       </FormGroup>
       <line></line>
       <Accordion defaultActiveKey="0">
         {groupArray.map((singlePerson, index) => (
           <Accordion.Item eventKey="0" key={index}>
+            <Button size="sm" onClick={() => removePerson(index)}>
+              Remove Person
+            </Button>
             <Accordion.Header> {singlePerson.name}</Accordion.Header>
             <Accordion.Body>Email: {singlePerson.email}</Accordion.Body>
             <Accordion.Body>Phone: {singlePerson.phoneNumber}</Accordion.Body>
@@ -202,7 +230,7 @@ const RegistrationCompany = () => {
         ))}
       </Accordion>
       <Button onClick={addPerson}>Add Person</Button>
-      <Button type="submit">Submit form</Button>
+      <Button type="submit">Submit Registration</Button>
     </Form>
   );
 };

@@ -24,15 +24,19 @@ export default function GroupRegistrationCreateForm(props) {
   } = props;
   const initialValues = {
     category: "",
+    raceNumber: "",
   };
   const [category, setCategory] = React.useState(initialValues.category);
+  const [raceNumber, setRaceNumber] = React.useState(initialValues.raceNumber);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setCategory(initialValues.category);
+    setRaceNumber(initialValues.raceNumber);
     setErrors({});
   };
   const validations = {
     category: [{ type: "Required" }],
+    raceNumber: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -61,6 +65,7 @@ export default function GroupRegistrationCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           category,
+          raceNumber,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -124,6 +129,7 @@ export default function GroupRegistrationCreateForm(props) {
           if (onChange) {
             const modelFields = {
               category: value,
+              raceNumber,
             };
             const result = onChange(modelFields);
             value = result?.category ?? value;
@@ -137,6 +143,31 @@ export default function GroupRegistrationCreateForm(props) {
         errorMessage={errors.category?.errorMessage}
         hasError={errors.category?.hasError}
         {...getOverrideProps(overrides, "category")}
+      ></TextField>
+      <TextField
+        label="Race number"
+        isRequired={true}
+        isReadOnly={false}
+        value={raceNumber}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              category,
+              raceNumber: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.raceNumber ?? value;
+          }
+          if (errors.raceNumber?.hasError) {
+            runValidationTasks("raceNumber", value);
+          }
+          setRaceNumber(value);
+        }}
+        onBlur={() => runValidationTasks("raceNumber", raceNumber)}
+        errorMessage={errors.raceNumber?.errorMessage}
+        hasError={errors.raceNumber?.hasError}
+        {...getOverrideProps(overrides, "raceNumber")}
       ></TextField>
       <Flex
         justifyContent="space-between"

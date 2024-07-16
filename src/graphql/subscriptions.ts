@@ -25,6 +25,7 @@ export const onCreateSoloRegistration = /* GraphQL */ `subscription OnCreateSolo
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -51,6 +52,7 @@ export const onUpdateSoloRegistration = /* GraphQL */ `subscription OnUpdateSolo
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -77,6 +79,7 @@ export const onDeleteSoloRegistration = /* GraphQL */ `subscription OnDeleteSolo
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -103,6 +106,7 @@ export const onCreateGroupRegistration = /* GraphQL */ `subscription OnCreateGro
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -129,6 +133,7 @@ export const onUpdateGroupRegistration = /* GraphQL */ `subscription OnUpdateGro
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -155,6 +160,7 @@ export const onDeleteGroupRegistration = /* GraphQL */ `subscription OnDeleteGro
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -183,6 +189,7 @@ export const onCreateCompanyRegistration = /* GraphQL */ `subscription OnCreateC
     workClass
     category
     subCat
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -211,6 +218,7 @@ export const onUpdateCompanyRegistration = /* GraphQL */ `subscription OnUpdateC
     workClass
     category
     subCat
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -239,6 +247,7 @@ export const onDeleteCompanyRegistration = /* GraphQL */ `subscription OnDeleteC
     workClass
     category
     subCat
+    raceNumber
     createdAt
     updatedAt
     __typename

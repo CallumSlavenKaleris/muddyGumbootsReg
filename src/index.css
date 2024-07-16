@@ -1,3 +1,4 @@
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,7 +6,7 @@
 
   color-scheme: light;
   color: rgba(10, 10, 10, 0.87);
-  background-color: #242424;
+  background-color: #ae3737;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -37,6 +38,12 @@ body {
   min-height: 100vh;
 }
 
+.dateGender{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .regFormDiv {
   display: flex;
   flex-direction: column;
@@ -52,8 +59,8 @@ input {
 
 textarea {
   margin-bottom:15px;
-  resize: vertical; 
   max-height: 200px;
+  width: auto;
 }
 
 .comboBox, .datePicker  {
@@ -75,7 +82,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: rgba(10, 10, 10, 0.87);;
+  background-color: rgba(69, 10, 10, 0.87);;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -85,6 +92,14 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.accordian{
+  margin-bottom:15px;
+  margin-top:15px;
+  resize: vertical; 
+  max-height: 200px;
+  width: auto;
 }
 
 @media (prefers-color-scheme: light) {

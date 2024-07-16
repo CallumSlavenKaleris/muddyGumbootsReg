@@ -26,21 +26,25 @@ export default function CompanyRegistrationCreateForm(props) {
     workClass: "",
     category: "",
     subCat: "",
+    raceNumber: "",
   };
   const [workClass, setWorkClass] = React.useState(initialValues.workClass);
   const [category, setCategory] = React.useState(initialValues.category);
   const [subCat, setSubCat] = React.useState(initialValues.subCat);
+  const [raceNumber, setRaceNumber] = React.useState(initialValues.raceNumber);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setWorkClass(initialValues.workClass);
     setCategory(initialValues.category);
     setSubCat(initialValues.subCat);
+    setRaceNumber(initialValues.raceNumber);
     setErrors({});
   };
   const validations = {
     workClass: [{ type: "Required" }],
     category: [{ type: "Required" }],
     subCat: [],
+    raceNumber: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -71,6 +75,7 @@ export default function CompanyRegistrationCreateForm(props) {
           workClass,
           category,
           subCat,
+          raceNumber,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -136,6 +141,7 @@ export default function CompanyRegistrationCreateForm(props) {
               workClass: value,
               category,
               subCat,
+              raceNumber,
             };
             const result = onChange(modelFields);
             value = result?.workClass ?? value;
@@ -162,6 +168,7 @@ export default function CompanyRegistrationCreateForm(props) {
               workClass,
               category: value,
               subCat,
+              raceNumber,
             };
             const result = onChange(modelFields);
             value = result?.category ?? value;
@@ -188,6 +195,7 @@ export default function CompanyRegistrationCreateForm(props) {
               workClass,
               category,
               subCat: value,
+              raceNumber,
             };
             const result = onChange(modelFields);
             value = result?.subCat ?? value;
@@ -201,6 +209,33 @@ export default function CompanyRegistrationCreateForm(props) {
         errorMessage={errors.subCat?.errorMessage}
         hasError={errors.subCat?.hasError}
         {...getOverrideProps(overrides, "subCat")}
+      ></TextField>
+      <TextField
+        label="Race number"
+        isRequired={true}
+        isReadOnly={false}
+        value={raceNumber}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              workClass,
+              category,
+              subCat,
+              raceNumber: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.raceNumber ?? value;
+          }
+          if (errors.raceNumber?.hasError) {
+            runValidationTasks("raceNumber", value);
+          }
+          setRaceNumber(value);
+        }}
+        onBlur={() => runValidationTasks("raceNumber", raceNumber)}
+        errorMessage={errors.raceNumber?.errorMessage}
+        hasError={errors.raceNumber?.hasError}
+        {...getOverrideProps(overrides, "raceNumber")}
       ></TextField>
       <Flex
         justifyContent="space-between"

@@ -25,11 +25,13 @@ export declare type CompanyRegistrationCreateFormInputValues = {
     workClass?: string;
     category?: string;
     subCat?: string;
+    raceNumber?: string;
 };
 export declare type CompanyRegistrationCreateFormValidationValues = {
     workClass?: ValidationFunction<string>;
     category?: ValidationFunction<string>;
     subCat?: ValidationFunction<string>;
+    raceNumber?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CompanyRegistrationCreateFormOverridesProps = {
@@ -37,6 +39,7 @@ export declare type CompanyRegistrationCreateFormOverridesProps = {
     workClass?: PrimitiveOverrideProps<TextFieldProps>;
     category?: PrimitiveOverrideProps<TextFieldProps>;
     subCat?: PrimitiveOverrideProps<TextFieldProps>;
+    raceNumber?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CompanyRegistrationCreateFormProps = React.PropsWithChildren<{
     overrides?: CompanyRegistrationCreateFormOverridesProps | undefined | null;

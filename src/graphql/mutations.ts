@@ -26,6 +26,7 @@ export const createSoloRegistration = /* GraphQL */ `mutation CreateSoloRegistra
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -53,6 +54,7 @@ export const updateSoloRegistration = /* GraphQL */ `mutation UpdateSoloRegistra
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -80,6 +82,7 @@ export const deleteSoloRegistration = /* GraphQL */ `mutation DeleteSoloRegistra
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -107,6 +110,7 @@ export const createGroupRegistration = /* GraphQL */ `mutation CreateGroupRegist
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -134,6 +138,7 @@ export const updateGroupRegistration = /* GraphQL */ `mutation UpdateGroupRegist
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -161,6 +166,7 @@ export const deleteGroupRegistration = /* GraphQL */ `mutation DeleteGroupRegist
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -190,6 +196,7 @@ export const createCompanyRegistration = /* GraphQL */ `mutation CreateCompanyRe
     workClass
     category
     subCat
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -219,6 +226,7 @@ export const updateCompanyRegistration = /* GraphQL */ `mutation UpdateCompanyRe
     workClass
     category
     subCat
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -248,6 +256,7 @@ export const deleteCompanyRegistration = /* GraphQL */ `mutation DeleteCompanyRe
     workClass
     category
     subCat
+    raceNumber
     createdAt
     updatedAt
     __typename

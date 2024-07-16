@@ -1,10 +1,9 @@
 import { FormEvent, useState } from "react";
-import Combobox from "react-widgets/Combobox";
-import DatePicker from "react-widgets/DatePicker";
-import "react-widgets/styles.css";
 import { generateClient } from "aws-amplify/api";
 import * as mutations from "../graphql/mutations";
 import Form from "react-bootstrap/Form";
+import { FormGroup } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const client = generateClient();
 
@@ -19,25 +18,53 @@ const RegistrationSingle = () => {
   const [nextOfKinName, setNOKName] = useState("");
   const [nextOfKinPhone, setNOKPhone] = useState("");
   const [category, setCat] = useState("");
+  const [raceNumber, setRaceNum] = useState("");
 
-  const genders = ["Male", "Female"];
+  function validateCatgeroy() {
+    const birthday = new Date(dob);
+    const month_diff = Date.now() - birthday.getTime();
+    const age_dt = new Date(month_diff);
+    const age = Math.abs(age_dt.getUTCFullYear() - 1970);
 
-  const categories = ["Junior", "Open", "Masters (35+)", "Masters ()"];
+    switch (category) {
+      case "Junior (U19)":
+        if (age > 19) {
+          alert("You can not enter this category with your current age!");
+          return;
+        }
+        break;
+      case "Open (19-35)":
+        if (age < 19 || age > 35) {
+          alert("You can not enter this category with your current age!");
+          return;
+        }
+        break;
+      case "Masters 1 (36-50)":
+        if (age < 36 || age > 50) {
+          alert("You can not enter this category with your current age!");
+          return;
+        }
+        break;
+      case "Masters 2 (51-65)":
+        if (age < 51 || age > 65) {
+          alert("You can not enter this category with your current age!");
+          return;
+        }
+        break;
+      case "Masters 3 (65+)":
+        if (age < 65) {
+          alert("You can not enter this category with your current age!");
+          return;
+        }
+        break;
+      case "E-BIKE":
+    }
+  }
 
-  async function createRegisterSingle(evt: FormEvent) {
+  async function handleSubmit(evt: FormEvent) {
     evt.preventDefault();
-    if (!firstname || !lastname || !email) {
-      alert("Please fill out all required fields");
-      return;
-    }
-    if (!phoneNumber.match(/^\d{10}$/)) {
-      alert("Please enter a valid phone number");
-      return;
-    }
-    if (!email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
-      alert("Please enter a valid email address");
-      return;
-    }
+
+    validateCatgeroy();
 
     const person = {
       name: firstname + " " + lastname,
@@ -50,11 +77,15 @@ const RegistrationSingle = () => {
       nextOfKinPhone: nextOfKinPhone,
     };
 
+    setRaceNum("1");
+
     const singleReg = {
       user: person,
       category: category,
+      raceNumber: raceNumber,
     };
 
+    /*
     await client
       .graphql({
         query: mutations.createSoloRegistration,
@@ -67,93 +98,94 @@ const RegistrationSingle = () => {
           console.log(res.data.createSoloRegistration);
         },
         function (error) {
-          //if error show the error message in the log
-          console.log("Error: " + error.statusText);
+          alert("There was an error processing your registration, please try again and iof this issue persists please contact muddy gumboots staff");
         }
       );
+      */
   }
 
   return (
-    <div>
-      <div className="regFormDiv">
-        <input
+    <Form onSubmit={handleSubmit}>
+      <FormGroup>
+        <Form.Control
           required
-          className=""
+          width="50"
+          id="firstName"
+          className="classTest"
           type="text"
           value={firstname}
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
         />
-        <input
+        <Form.Control
           required
+          id="lastName"
           className=""
           type="text"
           value={lastname}
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
         />
-
-        <input
+        <Form.Control
           required
+          id="email"
           className=""
           type="email"
           value={email}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Combobox
-          className="comboBox"
-          placeholder="Gender"
-          data={genders}
-          dataKey="id"
-          textField="name"
-          onChange={(e) => setGender(e)}
-        />
-        <DatePicker
-          className="comboBox"
-          defaultValue={new Date()}
-          valueFormat={{ dateStyle: "medium" }}
-          onChange={(e) => setDob(e?.toDateString() as string)}
-        />
-        <input
+        <FormGroup className="dateGender">
+          <Form.Select onChange={(e) => setGender(e.target.value)}>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </Form.Select>
+          <Form.Control type="date" onChange={(e) => setDob(e.target.value)} />
+        </FormGroup>
+        <Form.Control
+          id="phoneNum"
+          required
           className="input"
           type="tel"
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
           value={phoneNumber}
           placeholder="Phone Number"
           onChange={(e) => setPhone(e.target.value)}
         />
-        <input
+        <Form.Control
+          required
           className=""
           type="text"
           value={nextOfKinName}
           placeholder="Next of Kin Name"
           onChange={(e) => setNOKName(e.target.value)}
         />
-        <input
+        <Form.Control
+          required
           className=""
           type="tel"
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
           value={nextOfKinPhone}
           placeholder="Next of Kin Phone Number"
           onChange={(e) => setNOKPhone(e.target.value)}
         />
-        <textarea
+        <Form.Control
+          as="textarea"
+          required
           value={medicalConditions}
           placeholder="Medical Conditions"
           onChange={(e) => setMedCond(e.target.value)}
         />
-        <Combobox
-          data={categories}
-          dataKey="id"
-          textField="name"
-          className="comboBox"
-          placeholder="Category"
-          onChange={(e) => setCat(e)}
-        />
-        <button onClick={createRegisterSingle}>Register</button>
-      </div>
-    </div>
+        <Form.Select onChange={(e) => setCat(e.target.value)}>
+          <option>Junior (U19)</option>
+          <option>Open (19-35)</option>
+          <option>Masters 1 (36-50)</option>
+          <option>Masters 2 (51-65)</option>
+          <option>Masters 3 (65+)</option>
+          <option>E-BIKE</option>
+        </Form.Select>
+      </FormGroup>
+      <line></line>
+      <Button type="submit">Submit Registration</Button>
+    </Form>
   );
 };
 

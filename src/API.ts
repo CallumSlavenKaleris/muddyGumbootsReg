@@ -6,6 +6,7 @@ export type CreateSoloRegistrationInput = {
   id?: string | null,
   user: PersonInput,
   category: string,
+  raceNumber: string,
 };
 
 export type PersonInput = {
@@ -21,6 +22,7 @@ export type PersonInput = {
 
 export type ModelSoloRegistrationConditionInput = {
   category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   and?: Array< ModelSoloRegistrationConditionInput | null > | null,
   or?: Array< ModelSoloRegistrationConditionInput | null > | null,
   not?: ModelSoloRegistrationConditionInput | null,
@@ -73,6 +75,7 @@ export type SoloRegistration = {
   id: string,
   user: Person,
   category: string,
+  raceNumber: string,
   createdAt: string,
   updatedAt: string,
 };
@@ -93,6 +96,7 @@ export type UpdateSoloRegistrationInput = {
   id: string,
   user?: PersonInput | null,
   category?: string | null,
+  raceNumber?: string | null,
 };
 
 export type DeleteSoloRegistrationInput = {
@@ -103,10 +107,12 @@ export type CreateGroupRegistrationInput = {
   id?: string | null,
   users: Array< PersonInput | null >,
   category: string,
+  raceNumber: string,
 };
 
 export type ModelGroupRegistrationConditionInput = {
   category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   and?: Array< ModelGroupRegistrationConditionInput | null > | null,
   or?: Array< ModelGroupRegistrationConditionInput | null > | null,
   not?: ModelGroupRegistrationConditionInput | null,
@@ -119,6 +125,7 @@ export type GroupRegistration = {
   id: string,
   users:  Array<Person | null >,
   category: string,
+  raceNumber: string,
   createdAt: string,
   updatedAt: string,
 };
@@ -127,6 +134,7 @@ export type UpdateGroupRegistrationInput = {
   id: string,
   users?: Array< PersonInput | null > | null,
   category?: string | null,
+  raceNumber?: string | null,
 };
 
 export type DeleteGroupRegistrationInput = {
@@ -139,12 +147,14 @@ export type CreateCompanyRegistrationInput = {
   workClass: string,
   category: string,
   subCat?: string | null,
+  raceNumber: string,
 };
 
 export type ModelCompanyRegistrationConditionInput = {
   workClass?: ModelStringInput | null,
   category?: ModelStringInput | null,
   subCat?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   and?: Array< ModelCompanyRegistrationConditionInput | null > | null,
   or?: Array< ModelCompanyRegistrationConditionInput | null > | null,
   not?: ModelCompanyRegistrationConditionInput | null,
@@ -159,6 +169,7 @@ export type CompanyRegistration = {
   workClass: string,
   category: string,
   subCat?: string | null,
+  raceNumber: string,
   createdAt: string,
   updatedAt: string,
 };
@@ -169,6 +180,7 @@ export type UpdateCompanyRegistrationInput = {
   workClass?: string | null,
   category?: string | null,
   subCat?: string | null,
+  raceNumber?: string | null,
 };
 
 export type DeleteCompanyRegistrationInput = {
@@ -217,6 +229,7 @@ export type DeleteEventInput = {
 export type ModelSoloRegistrationFilterInput = {
   id?: ModelIDInput | null,
   category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelSoloRegistrationFilterInput | null > | null,
@@ -249,6 +262,7 @@ export type ModelSoloRegistrationConnection = {
 export type ModelGroupRegistrationFilterInput = {
   id?: ModelIDInput | null,
   category?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelGroupRegistrationFilterInput | null > | null,
@@ -267,6 +281,7 @@ export type ModelCompanyRegistrationFilterInput = {
   workClass?: ModelStringInput | null,
   category?: ModelStringInput | null,
   subCat?: ModelStringInput | null,
+  raceNumber?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelCompanyRegistrationFilterInput | null > | null,
@@ -301,6 +316,7 @@ export type ModelEventConnection = {
 export type ModelSubscriptionSoloRegistrationFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   category?: ModelSubscriptionStringInput | null,
+  raceNumber?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionSoloRegistrationFilterInput | null > | null,
@@ -340,6 +356,7 @@ export type ModelSubscriptionStringInput = {
 export type ModelSubscriptionGroupRegistrationFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   category?: ModelSubscriptionStringInput | null,
+  raceNumber?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionGroupRegistrationFilterInput | null > | null,
@@ -351,6 +368,7 @@ export type ModelSubscriptionCompanyRegistrationFilterInput = {
   workClass?: ModelSubscriptionStringInput | null,
   category?: ModelSubscriptionStringInput | null,
   subCat?: ModelSubscriptionStringInput | null,
+  raceNumber?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionCompanyRegistrationFilterInput | null > | null,
@@ -389,6 +407,7 @@ export type CreateSoloRegistrationMutation = {
       nextOfKinPhone: string,
     },
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -415,6 +434,7 @@ export type UpdateSoloRegistrationMutation = {
       nextOfKinPhone: string,
     },
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -441,6 +461,7 @@ export type DeleteSoloRegistrationMutation = {
       nextOfKinPhone: string,
     },
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -467,6 +488,7 @@ export type CreateGroupRegistrationMutation = {
       nextOfKinPhone: string,
     } | null >,
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -493,6 +515,7 @@ export type UpdateGroupRegistrationMutation = {
       nextOfKinPhone: string,
     } | null >,
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -519,6 +542,7 @@ export type DeleteGroupRegistrationMutation = {
       nextOfKinPhone: string,
     } | null >,
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -547,6 +571,7 @@ export type CreateCompanyRegistrationMutation = {
     workClass: string,
     category: string,
     subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -575,6 +600,7 @@ export type UpdateCompanyRegistrationMutation = {
     workClass: string,
     category: string,
     subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -603,6 +629,7 @@ export type DeleteCompanyRegistrationMutation = {
     workClass: string,
     category: string,
     subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -679,6 +706,7 @@ export type GetSoloRegistrationQuery = {
       nextOfKinPhone: string,
     },
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -697,6 +725,7 @@ export type ListSoloRegistrationsQuery = {
       __typename: "SoloRegistration",
       id: string,
       category: string,
+      raceNumber: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -724,6 +753,7 @@ export type GetGroupRegistrationQuery = {
       nextOfKinPhone: string,
     } | null >,
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -742,6 +772,7 @@ export type ListGroupRegistrationsQuery = {
       __typename: "GroupRegistration",
       id: string,
       category: string,
+      raceNumber: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -771,6 +802,7 @@ export type GetCompanyRegistrationQuery = {
     workClass: string,
     category: string,
     subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -791,6 +823,7 @@ export type ListCompanyRegistrationsQuery = {
       workClass: string,
       category: string,
       subCat?: string | null,
+      raceNumber: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -856,6 +889,7 @@ export type OnCreateSoloRegistrationSubscription = {
       nextOfKinPhone: string,
     },
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -881,6 +915,7 @@ export type OnUpdateSoloRegistrationSubscription = {
       nextOfKinPhone: string,
     },
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -906,6 +941,7 @@ export type OnDeleteSoloRegistrationSubscription = {
       nextOfKinPhone: string,
     },
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -931,6 +967,7 @@ export type OnCreateGroupRegistrationSubscription = {
       nextOfKinPhone: string,
     } | null >,
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -956,6 +993,7 @@ export type OnUpdateGroupRegistrationSubscription = {
       nextOfKinPhone: string,
     } | null >,
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -981,6 +1019,7 @@ export type OnDeleteGroupRegistrationSubscription = {
       nextOfKinPhone: string,
     } | null >,
     category: string,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1008,6 +1047,7 @@ export type OnCreateCompanyRegistrationSubscription = {
     workClass: string,
     category: string,
     subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1035,6 +1075,7 @@ export type OnUpdateCompanyRegistrationSubscription = {
     workClass: string,
     category: string,
     subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1062,6 +1103,7 @@ export type OnDeleteCompanyRegistrationSubscription = {
     workClass: string,
     category: string,
     subCat?: string | null,
+    raceNumber: string,
     createdAt: string,
     updatedAt: string,
   } | null,

@@ -24,14 +24,17 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type GroupRegistrationUpdateFormInputValues = {
     category?: string;
+    raceNumber?: string;
 };
 export declare type GroupRegistrationUpdateFormValidationValues = {
     category?: ValidationFunction<string>;
+    raceNumber?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type GroupRegistrationUpdateFormOverridesProps = {
     GroupRegistrationUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     category?: PrimitiveOverrideProps<TextFieldProps>;
+    raceNumber?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type GroupRegistrationUpdateFormProps = React.PropsWithChildren<{
     overrides?: GroupRegistrationUpdateFormOverridesProps | undefined | null;

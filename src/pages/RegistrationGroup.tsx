@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Combobox from "react-widgets/Combobox";
-import DatePicker from "react-widgets/DatePicker";
-import "react-widgets/styles.css";
 import { generateClient } from "aws-amplify/api";
 import * as mutations from "../graphql/mutations";
 import { PersonInput } from "../API";
+import Form from "react-bootstrap/Form";
+import { Accordion, FormGroup } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const client = generateClient();
 
@@ -19,14 +19,81 @@ const RegistrationGroup = () => {
   const [nextOfKinName, setNOKName] = useState("");
   const [nextOfKinPhone, setNOKPhone] = useState("");
   const [category, setCat] = useState("");
+  const [raceNumber, setRaceNum] = useState("");
+  const [validAge, setValidAge] = useState(false);
 
-  const genders = ["Male", "Female"];
+  function validateCatgeroy() {
+    setValidAge(false);
+    const birthday = new Date(dob);
+    const month_diff = Date.now() - birthday.getTime();
+    const age_dt = new Date(month_diff);
+    const age = Math.abs(age_dt.getUTCFullYear() - 1970);
+    console.log(age);
 
-  const categories = ["Junior", "Open", "Masters (35+)", "Masters ()"];
+    console.log(category);
+    console.log(validAge);
+    if (category === "Junior (U19)" && age > 19) {
+      setValidAge(false);
+    } else if (category === "Open (19-35)" && !(age < 19 && age > 35)) {
+      setValidAge(false);
+    } else if (category === "Masters 1 (36-50)" && !(age < 19 && age > 35)) {
+      setValidAge(false);
+    } else if (category === "Masters 2 (51-65)" && !(age < 51 && age > 65)) {
+      setValidAge(false);
+    } else if (category === "Masters 3 (65+)" && !age > 65) {
+      setValidAge(false);
+    } else {
+      setValidAge(true);
+    }
+  }
 
-  const groupArray: Array<PersonInput> = [];
+  const [groupArray, setGroupArray] = useState<Array<PersonInput>>([]);
 
   function addPerson() {
+    if (
+      !(
+        document.getElementById("firstName") as HTMLInputElement
+      ).checkValidity()
+    ) {
+      (
+        document.getElementById("firstName") as HTMLInputElement
+      ).reportValidity();
+      return;
+    }
+
+    if (
+      !(document.getElementById("lastName") as HTMLInputElement).checkValidity()
+    ) {
+      (
+        document.getElementById("lastName") as HTMLInputElement
+      ).reportValidity();
+      return;
+    }
+
+    if (
+      !(document.getElementById("email") as HTMLInputElement).checkValidity()
+    ) {
+      (document.getElementById("email") as HTMLInputElement).reportValidity();
+      return;
+    }
+
+    if (
+      !(document.getElementById("phoneNum") as HTMLInputElement).checkValidity()
+    ) {
+      (
+        document.getElementById("phoneNum") as HTMLInputElement
+      ).reportValidity();
+      return;
+    }
+
+    validateCatgeroy();
+
+    if (!validAge) {
+      alert("You can not enter this category with your current age!");
+
+      return;
+    }
+
     const person = {
       name: firstname + " " + lastname,
       dateOfBirth: dob,
@@ -38,19 +105,25 @@ const RegistrationGroup = () => {
       nextOfKinPhone: nextOfKinPhone,
     };
 
-    groupArray.push(person);
-    console.log(groupArray);
+    setGroupArray([...groupArray, person]);
   }
 
-  async function createRegisterGroup() {
+  function removePerson(index: number) {
+    const array = [...groupArray];
+    if (index !== -1) {
+      array.splice(index, 1);
+      setGroupArray(array);
+    }
+  }
+
+  async function handleSubmit() {
     const groupReg = {
       users: groupArray,
       category: category,
+      raceNumber: raceNumber,
     };
 
-    console.log(groupReg);
-
-    client
+    await client
       .graphql({
         query: mutations.createGroupRegistration,
         variables: { input: groupReg },
@@ -61,93 +134,103 @@ const RegistrationGroup = () => {
           console.log(res.data.createGroupRegistration);
         },
         function (error) {
-          //if error show the error message in the log
+          alert(
+            "There was an error processing your registration, please try again and iof this issue persists please contact muddy gumboots staff"
+          );
           console.log("Error: " + error.statusText);
         }
       );
   }
 
   return (
-    <div>
-      <div className="regFormDiv">
-        <input
+    <Form onSubmit={handleSubmit}>
+      <FormGroup>
+        <Form.Control
           required
-          className=""
+          id="firstName"
+          className=".mt-0"
           type="text"
           value={firstname}
           placeholder="First Name"
           onChange={(e) => setFirstName(e.target.value)}
         />
-        <input
+        <Form.Control
           required
-          className=""
+          id="lastName"
+          className=".mt-0"
           type="text"
           value={lastname}
           placeholder="Last Name"
           onChange={(e) => setLastName(e.target.value)}
         />
-        <input
+        <Form.Control
           required
-          className=""
+          id="email"
+          className=".mt-0"
           type="email"
           value={email}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Combobox
-          className="comboBox"
-          placeholder="Gender"
-          data={genders}
-          dataKey="id"
-          textField="name"
-          onChange={(e) => setGender(e)}
-        />
-        <DatePicker
-          className="comboBox"
-          defaultValue={new Date()}
-          valueFormat={{ dateStyle: "medium" }}
-          onChange={(e) => setDob(e?.toDateString() as string)}
-        />
-        <input
-          className="input"
+        <Form.Select onChange={(e) => setGender(e.target.value)}>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </Form.Select>
+        <Form.Control type="date" onChange={(e) => setDob(e.target.value)} />
+        <Form.Control
+          id="phoneNum"
+          required
           type="tel"
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
           value={phoneNumber}
           placeholder="Phone Number"
           onChange={(e) => setPhone(e.target.value)}
         />
-        <input
-          className=""
+        <Form.Control
+          required
           type="text"
           value={nextOfKinName}
           placeholder="Next of Kin Name"
           onChange={(e) => setNOKName(e.target.value)}
         />
-        <input
-          className=""
+        <Form.Control
+          required
           type="tel"
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
           value={nextOfKinPhone}
           placeholder="Next of Kin Phone Number"
           onChange={(e) => setNOKPhone(e.target.value)}
         />
-        <textarea
+        <Form.Control
+          as="textarea"
+          required
           value={medicalConditions}
           placeholder="Medical Conditions"
           onChange={(e) => setMedCond(e.target.value)}
         />
-        <Combobox
-          data={categories}
-          dataKey="id"
-          textField="name"
-          className="comboBox"
-          placeholder="Category"
-          onChange={(e) => setCat(e)}
-        />
-        <button onClick={addPerson}>Add Person</button>
-        <button onClick={createRegisterGroup}>Register Group</button>
-      </div>
-    </div>
+        <Form.Select onChange={(e) => setCat(e.target.value)}>
+          <option>Junior (U19)</option>
+          <option>Open (19-35)</option>
+          <option>Masters 1 (36-50)</option>
+          <option>Masters 2 (51-65)</option>
+          <option>Masters 3 (65+)</option>
+          <option>E-BIKE</option>
+        </Form.Select>
+      </FormGroup>
+      <line></line>
+      <Accordion>
+        {groupArray.map((singlePerson, index) => (
+          <Accordion.Item eventKey={index as unknown as string} key={index}>
+            <Button size="sm" onClick={() => removePerson(index)}>
+              Remove Person
+            </Button>
+            <Accordion.Header> {singlePerson.name}</Accordion.Header>
+            <Accordion.Body>Email: {singlePerson.email}</Accordion.Body>
+            <Accordion.Body>Phone: {singlePerson.phoneNumber}</Accordion.Body>
+          </Accordion.Item>
+        ))}
+      </Accordion>
+      <Button onClick={addPerson}>Add Person</Button>
+      <Button type="submit">Submit Registration</Button>
+    </Form>
   );
 };
 

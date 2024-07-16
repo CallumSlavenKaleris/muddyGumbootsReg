@@ -23,6 +23,7 @@ export const getSoloRegistration = /* GraphQL */ `query GetSoloRegistration($id:
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -41,6 +42,7 @@ export const listSoloRegistrations = /* GraphQL */ `query ListSoloRegistrations(
     items {
       id
       category
+      raceNumber
       createdAt
       updatedAt
       __typename
@@ -68,6 +70,7 @@ export const getGroupRegistration = /* GraphQL */ `query GetGroupRegistration($i
       __typename
     }
     category
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -90,6 +93,7 @@ export const listGroupRegistrations = /* GraphQL */ `query ListGroupRegistration
     items {
       id
       category
+      raceNumber
       createdAt
       updatedAt
       __typename
@@ -119,6 +123,7 @@ export const getCompanyRegistration = /* GraphQL */ `query GetCompanyRegistratio
     workClass
     category
     subCat
+    raceNumber
     createdAt
     updatedAt
     __typename
@@ -143,6 +148,7 @@ export const listCompanyRegistrations = /* GraphQL */ `query ListCompanyRegistra
       workClass
       category
       subCat
+      raceNumber
       createdAt
       updatedAt
       __typename

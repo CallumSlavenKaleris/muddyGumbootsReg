@@ -50,12 +50,14 @@ type SoloRegistration @model {
   id: ID!
   user: Person! 
   category: String!
+  raceNumber: String!
 }
 
 type GroupRegistration @model {
   id: ID!
   users: [Person]!
   category: String!
+  raceNumber: String!
 }
 
 type CompanyRegistration @model {
@@ -64,6 +66,7 @@ type CompanyRegistration @model {
   workClass: String!
   category: String!
   subCat: String
+  raceNumber: String!
 }
 
 type Event @model {
